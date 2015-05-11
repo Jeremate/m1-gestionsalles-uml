@@ -17,3 +17,8 @@ Utilisation de :
 - quitter : deactivate
 
 --> ajouter l'environnement virtuel au fichier .gitignore
+
+### Git et Gitflow
+- récupérer le travail des autres : git pull
+- partager son travail de la branche develop : git push origin develop
+- sinon utiliser les commandes git flow
