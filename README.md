@@ -15,3 +15,5 @@ Utilisation de :
 - travailler sur le projet
 - enregistrer les dépendances : pip freeze > requirements.txt
 - quitter : deactivate
+
+--> ajouter l'environnement virtuel au fichier .gitignore
