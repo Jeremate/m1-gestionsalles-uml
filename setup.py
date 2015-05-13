@@ -1,4 +1,3 @@
-from __future__ import print_function
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 import codecs
@@ -34,45 +33,41 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 setup(
-    name='sandman',
-    version=find_version('sandman', '__init__.py'),
-    url='http://github.com/jeffknupp/sandman/',
-    license='Apache Software License',
-    author='Jeff Knupp',
+    name='m1-gestionsalles-uml',
+    version=find_version('m1-gestionsalles-uml', '__init__.py'),
+    url='http://github.com/jeremate/m1-gestionsalles-uml/',
+    license='GNU GENERAL PUBLIC LICENSE',
+    author='Jeremy Klauer and Paul-Jakez Boceno',
     tests_require=['pytest'],
-    install_requires=['Flask>=0.10.1',
-                      'Flask-SQLAlchemy>=1.0',
-                      'SQLAlchemy>=0.8.2',
-                      'Flask-Admin>=1.0.6',
-                      'docopt>=0.6.1',
-                      ],
+    install_requires=[],
     cmdclass={'test': PyTest},
-    author_email='jeff@jeffknupp.com',
-    description='Automated REST APIs for existing database-driven systems',
+    author_email='jeremy.klauer@gmail.com',
+    description='Projet de gestion de salles développé en Python',
     long_description=long_description,
     entry_points={
         'console_scripts': [
-            'sandmanctl = sandman.sandmanctl:main',
+            'main = m1-gestionsalles-uml.main:main',
             ],
+        # 'gui_scripts': [],
         },
-    packages=['sandman', 'sandman.model'],
-    include_package_data=True,
-    platforms='any',
-    test_suite='sandman.test.test_sandman',
-    zip_safe=False,
-    package_data={'sandman': ['templates/**', 'static/*/*']},
-    classifiers = [
-        'Programming Language :: Python',
-        'Development Status :: 4 - Beta',
-        'Natural Language :: English',
-        'Environment :: Web Environment',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License',
-        'Operating System :: OS Independent',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Software Development :: Libraries :: Application Frameworks',
-        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-        ],
+    packages=find_packages(),
+    # include_package_data=True,
+    # platforms='any',
+    # test_suite='sandman.test.test_sandman',
+    # zip_safe=False,
+    # package_data={'sandman': ['templates/**', 'static/*/*']},
+    # classifiers = [
+    #     'Programming Language :: Python',
+    #     'Development Status :: 4 - Beta',
+    #     'Natural Language :: English',
+    #     'Environment :: Web Environment',
+    #     'Intended Audience :: Developers',
+    #     'License :: OSI Approved :: Apache Software License',
+    #     'Operating System :: OS Independent',
+    #     'Topic :: Software Development :: Libraries :: Python Modules',
+    #     'Topic :: Software Development :: Libraries :: Application Frameworks',
+    #     'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    #     ],
     extras_require={
         'testing': ['pytest'],
       }
