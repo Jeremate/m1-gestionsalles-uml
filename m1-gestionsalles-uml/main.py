@@ -2,9 +2,10 @@ from patrimoine import batiment
 
 
 ''' variables  '''
+''' liste des batiment'''
 batiments = {}
 
-''' fonctionnalitées '''
+''' fonctionnalitées batiment'''
 def ajouter_batiment(no_bat,nom,adresse):
 	nouveau_bat = batiment.batiment(nom,adresse)
 	if no_bat not in batiments.keys():
