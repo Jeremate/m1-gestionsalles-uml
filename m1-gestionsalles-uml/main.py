@@ -12,7 +12,6 @@ typesalles = []
 materiels = []
 typemateriels = []
 salles = []
-typesalles = []
 
 ''' fonctionnalitées batiment'''
 def ajouter_batiment(no_bat,nom,adresse):
@@ -40,6 +39,7 @@ def ajouter_typesalle(nom):
 	for ts in typesalles:
 		if ts.getnom() == nom:
 			var_ajout = 0
+			break
 	if var_ajout:
 		nouveau_typesalle = typesalle.typesalle(nom)
 		typesalles.append(nouveau_typesalle)
@@ -55,7 +55,21 @@ def consulter_typesalle(nom):
 			print(ts)
 
 '''fonctionnalitées materiel'''
-def ajouter_materiel(self,code_inv):
+def ajouter_materiel(code_inv):
+	var_ajout = 1
+	for m in materiels:
+		if m.get_id() == code_inv:
+			var_ajout = 0
+			break
+	if var_ajout:
+		nouveau_materiel = materiel.materiel(code_inv)
+		materiels.append(nouveau_materiel)
+
+def supprimer_materiel(code_inv):
+	for m in materiels:
+		if m.get_id() == code_inv:
+			materiels.remove(m)
+			break
 
 
 '''fonctionnalitées typemateriel'''
@@ -64,6 +78,7 @@ def ajouter_typemateriel(nom):
 	for tm in typemateriels:
 		if ts.getnom() == nom:
 			var_ajout = 0
+			break
 	if var_ajout:
 		nouveau_typemateriel = typemateriel.typemateriel(nom)
 		typemateriels.append(nouveau_typemateriel)
