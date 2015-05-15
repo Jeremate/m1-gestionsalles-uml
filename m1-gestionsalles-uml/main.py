@@ -36,6 +36,16 @@ def ajouter_typesalle(nom):
 		nouveau_typesalle = typesalle.typesalle(nom)
 		typesalles.append(nouveau_typesalle)
 
+def supprimer_typesalle(nom):
+	for ts in typsalles:
+		if ts.getnom() == nom:
+			typesalle.remove(ts)
+
+def consulter_typesalle(nom):
+	for ts in typesalles:
+		if ts.getnom() == nom:
+			print(ts)
+
 def main():
 	ajouter_batiment(1,"bat_1","adresse_1")
 	'''ajouter_batiment(2,"bat_2","adresse_2")
