@@ -4,6 +4,6 @@ class materiel:
 	def get_id():
 		return self.code_inv
 	def __str__(self):
-		return self.nom
+		return self.code_inv
 	def __repr__(self):
-		return self.nom
+		return self.code_inv
