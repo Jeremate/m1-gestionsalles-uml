@@ -1,4 +1,4 @@
-class salle:
+class Salle(object):
 	def __init__(self,no_etage,no_salle,no_bat,supercifie):
 		self.no_etage = no_etage
 		self.no_salle = no_salle

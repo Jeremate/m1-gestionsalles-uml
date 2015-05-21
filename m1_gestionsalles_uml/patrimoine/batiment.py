@@ -1,4 +1,4 @@
-class batiment:
+class Batiment(object):
 	def __init__(self,nom,adresse):
 		self.nom = nom
 		self.adresse = adresse
