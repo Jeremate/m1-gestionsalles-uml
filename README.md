@@ -1,4 +1,4 @@
-# m1-gestionsalles-uml
+# m1_gestionsalles_uml
 Projet de gestion de salles développé en Python
 
 ## Developer
