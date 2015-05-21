@@ -1,4 +1,4 @@
-class typesalle:
+class Typesalle(object):
 	def __init__(self,nom):
 		self.nom = nom
 	def getnom():
