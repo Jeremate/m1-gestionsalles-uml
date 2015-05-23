@@ -72,11 +72,11 @@ def supprimer_materiel(code_inv):
 			break
 
 
-"""#fonctionnalitées typemateriel
+#fonctionnalitées typemateriel
 def ajouter_typemateriel(nom):
 	var_ajout = 1
 	for tm in typemateriels:
-		if ts.getnom() == nom:
+		if tm.getnom() == nom:
 			var_ajout = 0
 			break
 	if var_ajout:
@@ -85,28 +85,45 @@ def ajouter_typemateriel(nom):
 
 def supprimer_typemateriel(nom):
 	for tm in typemateriels:
-		if tm.getnom() == nom:
-			typemateriels.remove(ts)
+		if tm.nom == nom:
+			"""typemateriels.remove(tm)
+												break"""
 
 def consulter_typemateriel(nom):
 	for tm in typemateriels:
 		if tm.getnom() == nom:
-			print(ts)"""
+			print(ts)
 
 
 #fonctionnalitées salle
-
+#fonction d'ajout d'une salle si le batiment ou le typesalle n'existe pas alors la fonction est abandonné
+def ajouter_salle(no_etage,no_salle,no_bat,superficie,typesalle):
+	var_ajout = 0
+	if no_bat in batiments:
+		if typesalle in typesalles:
+			var_ajout = 1
+			for s in salles:
+				if s.no_salle == no_salle and s.no_etage == no_etage:
+					var_ajout = 0
+					break
+			if var_ajout:
+				nouvelle_salle = salle.Salle(no_etage,no_salle,no_bat,superficie,typesalle)
+				salles.append(nouvelle_salle)
 
 def main():
 	ajouter_batiment(1,"bat_1","adresse_1")
 	"""ajouter_batiment(2,"bat_2","adresse_2")
 	modifier_batiment(2,"bat_3","adresse_3")
 	rechercher_batiment(2)"""
-	#ajouter_typemateriel("wow")
-	#supprimer_typemateriel("wow")
+	ajouter_typemateriel("wow")
+	supprimer_typemateriel("wow")
+	ajouter_typesalle("classe")
+	print(typesalles)
 	#supprimer_typesalle()
+	ajouter_salle(1,10,1,10,typesalles[0])
 	print(typemateriels)
 	print(batiments)
+	print(salles)
 
 if __name__ == '__main__':
 	main()
