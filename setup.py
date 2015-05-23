@@ -33,9 +33,9 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 setup(
-    name='m1-gestionsalles-uml',
-    version=find_version('m1-gestionsalles-uml', '__init__.py'),
-    url='http://github.com/jeremate/m1-gestionsalles-uml/',
+    name='m1_gestionsalles_uml',
+    version=find_version('m1_gestionsalles_uml', '__init__.py'),
+    url='http://github.com/jeremate/m1_gestionsalles_uml/',
     license='GNU GENERAL PUBLIC LICENSE',
     author='Jeremy Klauer and Paul-Jakez Boceno',
     tests_require=['pytest'],
@@ -46,7 +46,7 @@ setup(
     long_description=long_description,
     entry_points={
         'console_scripts': [
-            'main = m1-gestionsalles-uml.main:main',
+            'main = m1_gestionsalles_uml.main:main',
             ],
         # 'gui_scripts': [],
         },

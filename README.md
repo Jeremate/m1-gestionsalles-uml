@@ -1,4 +1,4 @@
-# m1-gestionsalles-uml
+# m1_gestionsalles_uml
 Projet de gestion de salles développé en Python
 
 ## Developer
@@ -22,3 +22,6 @@ Utilisation de :
 - récupérer le travail des autres : git pull
 - partager son travail de la branche develop : git push origin develop
 - sinon utiliser les commandes git flow
+
+### Utilisation de py.test
+- Dans un Terminal, à la racine du projet, exécuter : python3 setup.py test
