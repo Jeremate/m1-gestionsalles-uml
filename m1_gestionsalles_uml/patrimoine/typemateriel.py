@@ -8,8 +8,11 @@ class Typemateriel(object):
 	def __init__(self,nom):
 		self.nom = nom
 	
-	def __repr__(self):
+	def __str__(self):
 		return "{nom}".format()
+
+	def __repr__(self):
+		return self._nom
 
 	@property
 	def nom(self):

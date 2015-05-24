@@ -41,3 +41,6 @@ class Salle(object):
 
 	def __repr__(self):
 		return str(self.no_etage)+" "+str(self.no_salle)+" "+str(self.no_bat)+" "+str(self.superficie)+" "+str(self.typesalle)
+
+	def __str__(self):
+		return str(self.no_etage)+" "+str(self.no_salle)+" "+str(self.no_bat)+" "+str(self.superficie)+" "+str(self.typesalle)		

@@ -16,7 +16,7 @@ salles = []
 #fonctionnalitées batiment
 def ajouter_batiment(no_bat,nom,adresse):
 	nouveau_bat = batiment.Batiment(nom,adresse)
-	if no_bat not in batiments.keys():
+	if no_bat not in batiments:
 		batiments[no_bat] = nouveau_bat
 
 
@@ -26,18 +26,18 @@ def rechercher_batiment(no_bat):
 
 def modifier_batiment(no_bat,nom,adresse):
 	nouveau_bat = batiment.Batiment(nom,adresse)
-	if no_bat in batiments.keys():
+	if no_bat in batiments:
 		batiments[no_bat] = nouveau_bat
 
 def supprimer_batiment(no_bat):
-	if no_bat not in batiments.keys():
+	if no_bat not in batiments:
 		del batiments[no_bat]
 
 #fonctionnalitées typesalle
 def ajouter_typesalle(nom):
 	var_ajout = 1
 	for ts in typesalles:
-		if ts.getnom() == nom:
+		if ts.nom == nom:
 			var_ajout = 0
 			break
 	if var_ajout:
@@ -46,19 +46,18 @@ def ajouter_typesalle(nom):
 
 def supprimer_typesalle(nom):
 	for ts in typsalles:
-		if ts.getnom() == nom:
+		if ts.nom == nom:
 			typesalle.remove(ts)
 
 def consulter_typesalle(nom):
 	for ts in typesalles:
-		if ts.getnom() == nom:
-			print(ts)
-
+		if ts.nom == nom:
+			return ts
 #fonctionnalitées materiel
 def ajouter_materiel(code_inv):
 	var_ajout = 1
 	for m in materiels:
-		if m.get_id() == code_inv:
+		if m.code_inv == code_inv:
 			var_ajout = 0
 			break
 	if var_ajout:
@@ -67,7 +66,7 @@ def ajouter_materiel(code_inv):
 
 def supprimer_materiel(code_inv):
 	for m in materiels:
-		if m.get_id() == code_inv:
+		if m.code_inv == code_inv:
 			materiels.remove(m)
 			break
 
@@ -76,7 +75,7 @@ def supprimer_materiel(code_inv):
 def ajouter_typemateriel(nom):
 	var_ajout = 1
 	for tm in typemateriels:
-		if tm.getnom() == nom:
+		if tm.nom == nom:
 			var_ajout = 0
 			break
 	if var_ajout:
@@ -91,8 +90,8 @@ def supprimer_typemateriel(nom):
 
 def consulter_typemateriel(nom):
 	for tm in typemateriels:
-		if tm.getnom() == nom:
-			print(ts)
+		if tm.nom == nom:
+			return tm
 
 
 #fonctionnalitées salle
@@ -110,6 +109,16 @@ def ajouter_salle(no_etage,no_salle,no_bat,superficie,typesalle):
 				nouvelle_salle = salle.Salle(no_etage,no_salle,no_bat,superficie,typesalle)
 				salles.append(nouvelle_salle)
 
+#fonction pour supprimer une salle
+def supprimer_salle(salle):
+	if salle in salles:
+		for r in reservations:
+			if r.salle == salle:
+				reservations.remove(r)
+		salles.remove(salle)
+
+
+
 def main():
 	ajouter_batiment(1,"bat_1","adresse_1")
 	"""ajouter_batiment(2,"bat_2","adresse_2")
@@ -121,6 +130,7 @@ def main():
 	print(typesalles)
 	#supprimer_typesalle()
 	ajouter_salle(1,10,1,10,typesalles[0])
+	supprimer_salle(salles[0])
 	print(typemateriels)
 	print(batiments)
 	print(salles)

@@ -9,8 +9,11 @@ class Batiment(object):
 		self.nom = nom
 		self.adresse = adresse
 
-	def __repr__(self):
+	def __str__(self):
 		return "{nom} {adresse}".format()
+
+	def __repr__(self):
+		return self._nom+" "+repr(self.adresse)
 
 	@property
 	def nom(self):

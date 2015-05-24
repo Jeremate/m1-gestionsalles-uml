@@ -7,9 +7,12 @@ class Typesalle(object):
 
 	def __init__(self,nom):
 		self.nom = nom
+
+	def __str__(self):
+		return self._nom
 	
 	def __repr__(self):
-		return "{nom}".format()
+		return self._nom
 
 	@property
 	def nom(self):
