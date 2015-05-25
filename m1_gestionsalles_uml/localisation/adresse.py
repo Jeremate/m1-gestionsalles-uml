@@ -18,7 +18,11 @@ class Adresse(object):
 
 	def __repr__(self):
 		"""Représentation de la classe Adresse"""
-		return "{no} {adresse}, {code} - {ville}".format()
+		return "{} {}, {} - {}".format(self.no, self.adresse, self.code, self.ville)
+
+	def __str__(self):
+		"""Affichage de la classe Adresse"""
+		return "{} {}, {} - {}".format(self.no, self.adresse, self.code, self.ville)
 
 	@property
 	def no(self):
