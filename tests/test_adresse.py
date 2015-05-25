@@ -13,3 +13,8 @@ class TestAdresse:
 	def test_affichage(self):
 		adresse1 = loc_adr.Adresse(1, "Boulevard Michelet", 44000, "nantes")
 		assert repr(adresse1) == "1 Boulevard Michelet, 44000 - NANTES"
+
+	def test_comparaison(self):
+		adresse1 = loc_adr.Adresse(1, "Boulevard Michelet", 44000, "nantes")
+		adresse2 = loc_adr.Adresse(3, "Boulevard Michelet", 44000, "Nantes")
+		assert adresse1 != adresse2
