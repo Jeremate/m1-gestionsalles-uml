@@ -5,12 +5,16 @@ class Demandeur(object):
 		no_dem : numéro unique du demandeur
 		nom : nom du demandeur
 		adresse : adresse du demandeur
-		reservations : liste des réservations pour le demandeur
+		origine : origine du demandeur
+		titre : titre du deandeur
+
 	"""
-	def __init__(self,no_dem,nom,adresse):
+	def __init__(self,no_dem,nom,adresse,origine,titre):
 		self.no_dem = no_dem
 		self.nom = nom
 		self.adresse = adresse
+		self.origine = origine
+		self.titre = titre 
 
 	def __str__(self):
 		return eelf._no_dem+" "+self._nom+" "+repr(self.adresse)
