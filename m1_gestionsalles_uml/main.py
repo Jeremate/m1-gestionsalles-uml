@@ -118,6 +118,9 @@ def supprimer_salle(salle):
 		salles.remove(salle)
 
 
+#fonctionnalitées pour la classe demandeur
+def ajouter_demandeur()
+
 
 def main():
 	ajouter_batiment(1,"bat_1","adresse_1")
@@ -130,7 +133,7 @@ def main():
 	print(typesalles)
 	#supprimer_typesalle()
 	ajouter_salle(1,10,1,10,typesalles[0])
-	supprimer_salle(salles[0])
+	#supprimer_salle(salles[0])
 	print(typemateriels)
 	print(batiments)
 	print(salles)
