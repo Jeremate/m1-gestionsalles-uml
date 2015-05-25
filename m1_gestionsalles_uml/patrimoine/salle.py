@@ -1,21 +1,46 @@
 class Salle(object):
-	def __init__(self,no_etage,no_salle,no_bat,supercifie):
+
+	def __init__(self,no_etage,no_salle,no_bat,superficie,typesalle):
 		self.no_etage = no_etage
 		self.no_salle = no_salle
 		self.no_bat = no_bat
-		self.supercifie = supercifie
+		self.superficie = superficie
+		self.typesalle = typesalle
 
-	def getno_etage():
-		return self.no_etage
+	@property
+	def no_etage(self):
+	    return self._no_etage
 
-	def getno_salle():
-		return self.no_salle
+	@no_etage.setter
+	def no_etage(self, val):
+		self._no_etage = val
 
-	def getno_bat():
-		return self.no_bat
+	@property
+	def no_salle(self):
+	    return self._no_salle
+
+	@no_salle.setter
+	def no_salle(self, val):
+		self._no_salle = val
+		
+	@property
+	def no_bat(self):
+	    return self._no_bat
+
+	@no_bat.setter
+	def no_bat(self, val):
+		self._no_bat = val
+
+	@property
+	def superficie(self):
+	    return self._superficie
+
+	@superficie.setter
+	def superficie(self, val):
+		self._superficie = val
+
+	def __repr__(self):
+		return str(self.no_etage)+" "+str(self.no_salle)+" "+str(self.no_bat)+" "+str(self.superficie)+" "+str(self.typesalle)
 
 	def __str__(self):
-		return self.nom+" "+self.adresse
-		
-	def __repr__(self):
-		return self.nom+" "+self.adresse
+		return str(self.no_etage)+" "+str(self.no_salle)+" "+str(self.no_bat)+" "+str(self.superficie)+" "+str(self.typesalle)		
