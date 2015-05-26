@@ -119,7 +119,7 @@ def supprimer_salle(salle):
 
 
 #fonctionnalitées pour la classe demandeur
-def ajouter_demandeur()
+
 
 
 def main():
