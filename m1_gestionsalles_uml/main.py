@@ -6,12 +6,12 @@ from patrimoine import salle
 from patrimoine import typesalle
 
 #variables
-#liste des batiment
 batiments = {}
-typesalles = []
-materiels = []
-typemateriels = []
-salles = []
+typesalles = {}
+materiels = {}
+typemateriels = {}
+salles = {}
+reservations = {}
 
 #fonctionnalitées batiment
 def ajouter_batiment(no_bat,nom,adresse):
@@ -34,106 +34,75 @@ def supprimer_batiment(no_bat):
 		del batiments[no_bat]
 
 #fonctionnalitées typesalle
-def ajouter_typesalle(nom):
-	var_ajout = 1
-	for ts in typesalles:
-		if ts.nom == nom:
-			var_ajout = 0
-			break
-	if var_ajout:
-		nouveau_typesalle = typesalle.Typesalle(nom)
-		typesalles.append(nouveau_typesalle)
+def ajouter_typesalle(nom_typesalle,description):
+	if nom_typesalle not in typesalles:
+		nouveau_typesalle = typesalle.Typesalle(description)
+		typesalles[nom_typesalle] = nouveau_typesalle
 
-def supprimer_typesalle(nom):
-	for ts in typsalles:
-		if ts.nom == nom:
-			typesalle.remove(ts)
+def supprimer_typesalle(nom_typesalle):
+	if nom_typesalle in typesalles:
+		del typesalles[nom_typesalle]
 
-def consulter_typesalle(nom):
-	for ts in typesalles:
-		if ts.nom == nom:
-			return ts
+def consulter_typesalle(description):
+	if nom_typesalle in typesalles:
+		return typesalles[nom_typesalle]
+
 #fonctionnalitées materiel
 def ajouter_materiel(code_inv):
-	var_ajout = 1
-	for m in materiels:
-		if m.code_inv == code_inv:
-			var_ajout = 0
-			break
-	if var_ajout:
+	if code_inv not in materiels:
 		nouveau_materiel = materiel.Materiel(code_inv)
-		materiels.append(nouveau_materiel)
+		materiels[code_inv] = nouveau_materiel
 
 def supprimer_materiel(code_inv):
-	for m in materiels:
-		if m.code_inv == code_inv:
-			materiels.remove(m)
-			break
+	if code_inv in materiels:
+		del materiels[code_inv]
+
+def consulter_materiel(code_inv):
+	if code_inv in materiels:
+		return materiels[code_inv]
 
 
 #fonctionnalitées typemateriel
 def ajouter_typemateriel(nom):
-	var_ajout = 1
-	for tm in typemateriels:
-		if tm.nom == nom:
-			var_ajout = 0
-			break
-	if var_ajout:
+	if nom not in typemateriels:
 		nouveau_typemateriel = typemateriel.Typemateriel(nom)
-		typemateriels.append(nouveau_typemateriel)
+		typemateriels[nom] = nouveau_typemateriel
 
 def supprimer_typemateriel(nom):
-	for tm in typemateriels:
-		if tm.nom == nom:
-			"""typemateriels.remove(tm)
-												break"""
+	if nom in typemateriels:
+		del typemateriels[nom]
 
 def consulter_typemateriel(nom):
-	for tm in typemateriels:
-		if tm.nom == nom:
-			return tm
+	if nom in typemateriels:
+		return typemateriels[nom]
 
 
 #fonctionnalitées salle
 #fonction d'ajout d'une salle si le batiment ou le typesalle n'existe pas alors la fonction est abandonné
-def ajouter_salle(no_etage,no_salle,no_bat,superficie,typesalle):
-	var_ajout = 0
-	if no_bat in batiments:
-		if typesalle in typesalles:
-			var_ajout = 1
-			for s in salles:
-				if s.no_salle == no_salle and s.no_etage == no_etage:
-					var_ajout = 0
-					break
-			if var_ajout:
+def ajouter_salle(id_salle,no_etage,no_salle,no_bat,superficie,nom_typesalle):
+	if id_salle not in salles:
+		if no_bat in batiments:
+			if nom_typesalle in typesalles:
 				nouvelle_salle = salle.Salle(no_etage,no_salle,no_bat,superficie,typesalle)
-				salles.append(nouvelle_salle)
+				salles[id_salle] = nouvelle_salle
 
 #fonction pour supprimer une salle
-def supprimer_salle(salle):
-	if salle in salles:
+def supprimer_salle(id_salle):
+	if id_salle in salles:
 		for r in reservations:
-			if r.salle == salle:
-				reservations.remove(r)
-		salles.remove(salle)
-
+			if r[id_salle].id_salle() == id_salle:
+				del reservations[id_salle]
+		del salles[id_salle]
+#----fin fonctionnalitées salle----- 
 
 #fonctionnalitées pour la classe demandeur
-
+def ajouter_demandeur(no_dem, nom):
+	return 0
 
 
 def main():
-	ajouter_batiment(1,"bat_1","adresse_1")
-	"""ajouter_batiment(2,"bat_2","adresse_2")
-	modifier_batiment(2,"bat_3","adresse_3")
-	rechercher_batiment(2)"""
-	ajouter_typemateriel("wow")
-	supprimer_typemateriel("wow")
-	ajouter_typesalle("classe")
-	print(typesalles)
-	#supprimer_typesalle()
-	ajouter_salle(1,10,1,10,typesalles[0])
-	#supprimer_salle(salles[0])
+
+	print (typesalles)
 	print(typemateriels)
 	print(batiments)
 	print(salles)

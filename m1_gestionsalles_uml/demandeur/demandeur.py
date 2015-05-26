@@ -17,10 +17,10 @@ class Demandeur(object):
 		self.titre = titre 
 
 	def __str__(self):
-		return eelf._no_dem+" "+self._nom+" "+repr(self.adresse)
+		return "{} {} {} {} {}".format(self.no_dem,self.nom,self.adresse,self.origine,self.titre)
 
 	def __repr__(self):
-		return self._nom+" "+repr(self.adresse)
+		return "{} {} {} {} {}".format(self.no_dem,self.nom,self.adresse,self.origine,self.titre)
 
 	@property
 	def no_dem(self):

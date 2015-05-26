@@ -2,22 +2,22 @@ class Typesalle(object):
 	"""Classe représentant un type de salle.
 
 	Attributs:
-		nom : nom du type de salle
+		description : description du type de salle
 	"""
 
-	def __init__(self,nom):
-		self.nom = nom
+	def __init__(self,description):
+		self.description = description
 
 	def __str__(self):
-		return self._nom
+		return "{}".format(self.description)
 	
 	def __repr__(self):
-		return self._nom
+		return "{}".format(self.description)
 
 	@property
-	def nom(self):
-	    return self._nom
+	def description(self):
+	    return self._description
 
-	@nom.setter
-	def nom(self, val):
-		self._nom = val
+	@description.setter
+	def description(self, val):
+		self._description = val
