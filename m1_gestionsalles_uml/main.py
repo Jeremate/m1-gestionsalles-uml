@@ -13,6 +13,31 @@ materiels = []
 typemateriels = []
 salles = []
 
+class BatimentList(object):
+	"""Classe représentant un ensemble de Batiment
+
+	Attributs:
+
+	"""
+	
+	def __init__(self, arg):
+		super(BatimentList, self).__init__()
+		self._batiments = {}
+
+	def __iter__(self):
+		return self
+
+	def __next__(self):
+		for bat in self._batiments:
+			return bat
+
+	def ajouter_batiment(no_bat,nom,adresse):
+		nouveau_bat = batiment.Batiment(no_bat,nom,adresse)
+		if no_bat not in self.batiments:
+			self.batiments[no_bat] = nouveau_bat
+		
+		
+
 #fonctionnalitées batiment
 def ajouter_batiment(no_bat,nom,adresse):
 	nouveau_bat = batiment.Batiment(nom,adresse)
@@ -123,6 +148,7 @@ def supprimer_salle(salle):
 
 
 def main():
+	batiments = BatimentList()
 	ajouter_batiment(1,"bat_1","adresse_1")
 	"""ajouter_batiment(2,"bat_2","adresse_2")
 	modifier_batiment(2,"bat_3","adresse_3")
