@@ -2,23 +2,23 @@ class Titre(object):
 	"""Classe représentant le titre d'un demandeur.
 
 	Attributs:
-		desc : La desc du titre
+		description : La description du titre
 	"""
 
-	def __init__(self,desc):
-		self.desc = desc
+	def __init__(self,description):
+		self.description = description
 
 
 	def __str__(self):
-		return self._desc
+		return "{}".format(self.description)
 
 	def __repr__(self):
-		return self._desc
+		return self._description
 
 	@property
-	def desc(self):
-	    return self._desc
+	def description(self):
+	    return self._description
 
-	@desc.setter
-	def desc(self, val):
-		self._desc = val
+	@description.setter
+	def description(self, val):
+		self._description = val

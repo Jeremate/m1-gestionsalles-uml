@@ -10,10 +10,10 @@ class Origine(object):
 
 
 	def __str__(self):
-		return self._nom
+		return "{}".format(self.nom)
 
 	def __repr__(self):
-		return self._nom
+		return "{}".format(self.nom)
 
 	@property
 	def nom(self):
