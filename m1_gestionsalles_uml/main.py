@@ -14,24 +14,27 @@ salles = {}
 reservations = {}
 
 #fonctionnalitées batiment
-def ajouter_batiment(no_bat,nom,adresse):
-	nouveau_bat = batiment.Batiment(nom,adresse)
+def ajouter_batiment(no_bat, nom, adresse):
 	if no_bat not in batiments:
+		nouveau_bat = batiment.Batiment(no_bat, nom, adresse)
 		batiments[no_bat] = nouveau_bat
 
 
 def rechercher_batiment(no_bat):
-	print(no_bat," ",batiments[no_bat])
+	if no_bat in batiments:
+		return batiments[no_bat]
 
 
 def modifier_batiment(no_bat,nom,adresse):
-	nouveau_bat = batiment.Batiment(nom,adresse)
 	if no_bat in batiments:
+		nouveau_bat = batiment.Batiment(nom,adresse)
 		batiments[no_bat] = nouveau_bat
 
 def supprimer_batiment(no_bat):
 	if no_bat not in batiments:
 		del batiments[no_bat]
+#----------------------------
+
 
 #fonctionnalitées typesalle
 def ajouter_typesalle(nom_typesalle,description):
@@ -60,7 +63,7 @@ def supprimer_materiel(code_inv):
 def consulter_materiel(code_inv):
 	if code_inv in materiels:
 		return materiels[code_inv]
-
+#--------------------------------
 
 #fonctionnalitées typemateriel
 def ajouter_typemateriel(nom):
@@ -93,7 +96,7 @@ def supprimer_salle(id_salle):
 			if r[id_salle].id_salle() == id_salle:
 				del reservations[id_salle]
 		del salles[id_salle]
-#----fin fonctionnalitées salle----- 
+#-------------------------------
 
 #fonctionnalitées pour la classe demandeur
 def ajouter_demandeur(no_dem, nom):

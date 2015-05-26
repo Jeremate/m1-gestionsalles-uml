@@ -40,7 +40,7 @@ class Salle(object):
 		self._superficie = val
 
 	def __repr__(self):
-		return str(self.no_etage)+" "+str(self.no_salle)+" "+str(self.no_bat)+" "+str(self.superficie)+" "+str(self.typesalle)
+		return "{} {} {} {} {}".format(self.no_salle, self.no_bat, self.no_etage, self.superficie, self.typesalle)
 
 	def __str__(self):
-		return str(self.no_etage)+" "+str(self.no_salle)+" "+str(self.no_bat)+" "+str(self.superficie)+" "+str(self.typesalle)		
+		return "{} {} {} {} {}".format(self.no_salle, self.no_bat, self.no_etage, self.superficie, self.typesalle)

@@ -12,7 +12,7 @@ class Typemateriel(object):
 		return "{nom}".format()
 
 	def __repr__(self):
-		return self._nom
+		return "{nom}".format()
 
 	@property
 	def nom(self):
