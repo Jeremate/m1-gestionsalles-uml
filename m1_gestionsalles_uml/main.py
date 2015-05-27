@@ -4,6 +4,7 @@ from patrimoine import materiel
 from patrimoine import typemateriel
 from patrimoine import salle
 from patrimoine import typesalle
+from finance.tabletarif import TableTarif
 
 #variables
 
@@ -110,7 +111,7 @@ class GestionAPI(object):
 		if nom in self._typemateriels:
 			return self._typemateriels[nom]
 
-	typesalles = property(typemateriels,ajouter_typemateriel)
+	typemateriels = property(typemateriels,ajouter_typemateriel)
 
 	#fonctionnalitées salle
 	#fonction d'ajout d'une salle si le batiment ou le typesalle n'existe pas alors la fonction est abandonné
@@ -150,7 +151,10 @@ def main():
 	print (systeme.batiments)
 	systeme.ajouter_materiel(1)
 	print (systeme.materiels)
-	systeme.ajouter_typemateriel(1,1,1,1)
+	systeme.ajouter_typemateriel()
+	print (systeme.typemateriels)
+
+
 	"""ajouter_batiment(2,"bat_2","adresse_2")
 	modifier_batiment(2,"bat_3","adresse_3")
 	rechercher_batiment(2)"""
