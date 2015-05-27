@@ -1,4 +1,4 @@
-class Materiel(object):
+class Materiel(TableTarif):
 	"""Classe représentant un Materiel.
 
 	Attributs:
@@ -6,14 +6,14 @@ class Materiel(object):
 	"""
 
 	def __init__(self,code_inv):
-		self.code_inv = code_inv
+		self._code_inv = code_inv
 
 
 	def __str__(self):
-		return "{code_inv}".format()
+		return "{}".format(self._code_inv)
 
 	def __repr__(self):
-		return self._code_inv
+		return "{}".format(self._code_inv)
 
 	@property
 	def code_inv(self):

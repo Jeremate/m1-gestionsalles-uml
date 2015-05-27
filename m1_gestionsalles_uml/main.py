@@ -135,9 +135,9 @@ class GestionAPI(object):
 	salles = property(salles,ajouter_salle)
 	#-------------------------------
 
-#fonctionnalitées pour la classe demandeur
-def ajouter_demandeur(no_dem, nom):
-	return 0
+	#fonctionnalitées pour la classe demandeur
+	def ajouter_demandeur(self, no_dem, nom):
+		return 0
 
 
 def main():
@@ -148,7 +148,8 @@ def main():
 	print (systeme.rechercher_batiment(1))
 
 	print (systeme.batiments)
-
+	systeme.ajouter_materiel(1)
+	print (systeme.materiels)
 	"""ajouter_batiment(2,"bat_2","adresse_2")
 	modifier_batiment(2,"bat_3","adresse_3")
 	rechercher_batiment(2)"""
