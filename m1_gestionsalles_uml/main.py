@@ -7,31 +7,50 @@ from patrimoine import typesalle
 
 #variables
 
-class BatimentList(object):
-	"""Classe représentant un ensemble de Batiment
+class GestionAPI(object):
+	"""Classe représentant le systeme de gestion de salle
 
 	Attributs:
 
 	"""
 	
 	def __init__(self):
-		super(BatimentList, self).__init__()
-		self.batiments = {}
+		super(GestionAPI, self).__init__()
+		self._batiments = {}
+		self._materiels = {}
+		self._typemateriels = {}
+		self._typesalles = {}
+		self._salles = {}
 
-	def __iter__(self):
-		return self
 
-	def __next__(self):
-		for bat in self._batiments:
-			return bat
+	def recuperer_batiments(self):
+	    return self._batiments
 
-	def __repr__(self):
-		return repr(self.batiments)
+	
+
+	def materiels(self):
+	    return self._materiels
+
+	@property
+	def typesalles(self):
+	    return self._typesalles
+
+	@property
+	def salles(self):
+	    return self._salles
+
+	@property
+	def typemateriels(self):
+	    return self._typemateriels
+
 
 	def ajouter_batiment(self,no_bat,nom,adresse):
 		nouveau_bat = batiment.Batiment(no_bat,nom,adresse)
-		if no_bat not in self.batiments:
-			self.batiments[no_bat] = nouveau_bat
+		if no_bat not in self._batiments:
+			self._batiments[no_bat] = nouveau_bat
+
+	batiments = property(recuperer_batiments, ajouter_batiment)
+	
 
 	def rechercher_batiment(self, no_bat):
 		if no_bat in self.batiments:
@@ -48,24 +67,6 @@ class BatimentList(object):
 			del self.batiments[no_bat]
 
 
-class TypesalleList(object):
-	"""Classe représentant un ensemble de typesalle
-
-	Attributs:
-
-	"""
-	
-	def __init__(self):
-		super(TypesalleList, self).__init__()
-		self.typesalles = {}
-
-	def __iter__(self):
-		return self
-
-	def __next__(self):
-		for ts in self._typesalles:
-			return ts
-
 	#fonctionnalitées typesalle
 	def ajouter_typesalle(self, nom_typesalle, description):
 		if nom_typesalle not in self.typesalles:
@@ -80,24 +81,6 @@ class TypesalleList(object):
 		if nom_typesalle in self.typesalles:
 			return self.typesalles[nom_typesalle]
 
-
-class MaterielList(object):
-	"""Classe représentant un ensemble de materiel
-
-	Attributs:
-
-	"""
-	
-	def __init__(self):
-		super(MaterielList, self).__init__()
-		self.materiels = {}
-
-	def __iter__(self):
-		return self
-
-	def __next__(self):
-		for materiel in self._materiels:
-			return materiel
 
 	#fonctionnalitées materiel
 	def ajouter_materiel(self, code_inv):
@@ -114,23 +97,6 @@ class MaterielList(object):
 			return self.materiels[code_inv]
 	#--------------------------------
 
-class TypematerielList(object):
-	"""Classe représentant un ensemble de typemateriel
-
-	Attributs:
-
-	"""
-	
-	def __init__(self):
-		super(TypematerielList, self).__init__()
-		self.typemateriels = {}
-
-	def __iter__(self):
-		return self
-
-	def __next__(self):
-		for tm in self._typemateriels:
-			return tm
 
 	#fonctionnalitées typemateriel
 	def ajouter_typemateriel(self, nom):
@@ -146,24 +112,6 @@ class TypematerielList(object):
 		if nom in self.typemateriels:
 			return self.typemateriels[nom]
 
-
-class SalleList(object):
-	"""Classe représentant un ensemble de salle
-
-	Attributs:
-
-	"""
-	
-	def __init__(self):
-		super(SalleList, self).__init__()
-		self.salles = {}
-
-	def __iter__(self):
-		return self
-
-	def __next__(self):
-		for salle in self._salles:
-			return salle
 
 
 	#fonctionnalitées salle
@@ -191,12 +139,12 @@ def ajouter_demandeur(no_dem, nom):
 
 def main():
 
-	batiments = BatimentList()
-	batiments.ajouter_batiment(1,"Batiment 1","Adresse 1")
-	batiments.supprimer_batiment(1)
-	print (batiments.rechercher_batiment(1))
+	systeme = GestionAPI()
+	#systeme.ajouter_batiment(1,"Batiment 1","Adresse 1")
+	#systeme.supprimer_batiment(1)
+	#print (batiments.rechercher_batiment(1))
 
-	print (batiments)
+	print (systeme.batiments)
 
 	"""ajouter_batiment(2,"bat_2","adresse_2")
 	modifier_batiment(2,"bat_3","adresse_3")
