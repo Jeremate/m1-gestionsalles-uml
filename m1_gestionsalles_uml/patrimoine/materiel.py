@@ -1,3 +1,5 @@
+from finance.tabletarif import TableTarif
+
 class Materiel(TableTarif):
 	"""Classe représentant un Materiel.
 
