@@ -97,7 +97,7 @@ class GestionAPI(object):
 	def typemateriels(self):
 	    return self._typemateriels
 
-	def ajouter_typemateriel(self, nom):
+	def ajouter_typemateriel(self, nom, code, libelle, montant):
 		if nom not in self._typemateriels:
 			nouveau_typemateriel = typemateriel.Typemateriel(nom)
 			self._typemateriels[nom] = nouveau_typemateriel
@@ -150,6 +150,7 @@ def main():
 	print (systeme.batiments)
 	systeme.ajouter_materiel(1)
 	print (systeme.materiels)
+	systeme.ajouter_typemateriel(1,1,1,1)
 	"""ajouter_batiment(2,"bat_2","adresse_2")
 	modifier_batiment(2,"bat_3","adresse_3")
 	rechercher_batiment(2)"""
