@@ -99,7 +99,7 @@ class GestionAPI(object):
 
 	def ajouter_typemateriel(self, nom, code, libelle, montant):
 		if nom not in self._typemateriels:
-			nouveau_typemateriel = typemateriel.Typemateriel(nom)
+			nouveau_typemateriel = typemateriel.Typemateriel(nom, code, libelle, montant)
 			self._typemateriels[nom] = nouveau_typemateriel
 
 	def supprimer_typemateriel(self, nom):

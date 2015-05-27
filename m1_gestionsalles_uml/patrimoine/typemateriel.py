@@ -30,7 +30,7 @@ class Typemateriel(TableTarif):
 	def recuperer_libelle(self):
 		return self._libelle
 
-	def indiquer_libelle(self):
+	def indiquer_libelle(self, val):
 		self._libelle = val
 
 	libelle = property(recuperer_libelle,indiquer_libelle)
