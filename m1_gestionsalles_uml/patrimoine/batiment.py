@@ -1,3 +1,4 @@
+from patrimoine.salle import Salle
 class Batiment(object):
 	"""Classe représentant un batiment.
 
@@ -10,12 +11,13 @@ class Batiment(object):
 		self.no_bat = no_bat
 		self.nom = nom
 		self.adresse = adresse
+		self.salles = {}
 
 	def __str__(self):
-		return "{} {} {}".format(self.no_bat, self.nom, self.adresse)
+		return "{} {} {} {}".format(self.no_bat, self.nom, self.adresse, self.salles)
 
 	def __repr__(self):
-		return "{} {} {}".format(self.no_bat, self.nom, self.adresse)
+		return "{} {} {} {}".format(self.no_bat, self.nom, self.adresse, self.salles)
 
 	@property
 	def nom(self):
@@ -32,3 +34,13 @@ class Batiment(object):
 	@no_bat.setter
 	def no_bat(self, val):
 		self._no_bat = val
+
+	def ajouter_salle(self, no_bat, no_etage, no_salle, superficie, typesalle):
+		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
+		self.salles[id_salle] = Salle(no_etage, no_salle, no_bat, superficie, typesalle)
+
+	def supprimer_salle(self, no_bat, no_etage, no_salle):
+		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
+		if id_salle in self.salles:
+			del self.salles[id_salle]
+		

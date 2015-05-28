@@ -5,6 +5,7 @@ from patrimoine import typemateriel
 from patrimoine import salle
 from patrimoine import typesalle
 from finance.tabletarif import TableTarif
+from localisation.adresse import Adresse
 
 #variables
 
@@ -21,16 +22,35 @@ class GestionAPI(object):
 		self._materiels = {}
 		self._typemateriels = {}
 		self._typesalles = {}
-		self._salles = {}
+		self._demandeur = {}
+		self._reservations = {}
+		self._origine = {}
+		self._durer = {}
+		self._manifestation = {}
+		self._adresses = {}
 
+
+
+	def adresses(self):
+		return self._adresses
+
+	def ajouter_adresse(id_adresse, no, adresse, code, ville):
+		if id_adresse not in self._adresses:
+			self._adresses[id_adresse] = Adresse(no, adresse, code, ville)
+
+	def supprimer_adresse(id_adresse):
+		if id_adresse in self._adresses:
+			del self._adresses[id_adresse]
+
+	adresses = property(adresses,ajouter_adresse)
 
 	def batiments(self):
 	    return self._batiments
 
 
 	def ajouter_batiment(self,no_bat, nom, adresse):
-		nouveau_bat = batiment.Batiment(no_bat, nom, adresse)
 		if no_bat not in self._batiments:
+			nouveau_bat = batiment.Batiment(no_bat, nom, adresse)
 			self._batiments[no_bat] = nouveau_bat
 
 
@@ -115,25 +135,19 @@ class GestionAPI(object):
 
 	#fonctionnalitées salle
 	#fonction d'ajout d'une salle si le batiment ou le typesalle n'existe pas alors la fonction est abandonné
-	def salles(self):
-	    return self._salles
 
-	def ajouter_salle(self,id_salle,no_etage,no_salle,no_bat,superficie,nom_typesalle):
-		if id_salle not in self.s_alles:
-			if no_bat in self._batiments:
-				if nom_typesalle in self._typesalles:
-					nouvelle_salle = salle.Salle(no_etage,no_salle,no_bat,superficie,typesalle)
-					self._salles[id_salle] = nouvelle_salle
+
+	def ajouter_salle(self, no_bat, no_etage, no_salle, superficie, nom_typesalle):
+		if no_bat in self._batiments:
+			if nom_typesalle in self._typesalles:
+				self._batiments[no_bat].ajouter_salle(no_etage, no_salle, no_bat, superficie, nom_typesalle)
 
 	#fonction pour supprimer une salle
-	def supprimer_salle(self, id_salle):
-		if id_salle in self._salles:
-			for r in self._reservations:
-				if r[id_salle].id_salle() == id_salle:
-					del self._reservations[id_salle]
-			del self._salles[id_salle]
+	def supprimer_salle(self, no_bat, no_etage, no_salle):
+		#for r in self._reservations:
+			#if r in self._reservations:
+		self._batiments[no_bat].supprimer_salle(no_bat, no_etage, no_salle)
 
-	salles = property(salles,ajouter_salle)
 	#-------------------------------
 
 	#fonctionnalitées pour la classe demandeur
@@ -145,15 +159,14 @@ def main():
 
 	systeme = GestionAPI()
 	systeme.ajouter_batiment(1,"Batiment 1","Adresse 1")
-	systeme.supprimer_batiment(1)
+	#systeme.supprimer_batiment(1)
 	print (systeme.rechercher_batiment(1))
-
-	print (systeme.batiments)
-	systeme.ajouter_materiel(1)
-	print (systeme.materiels)
-	systeme.ajouter_typemateriel()
+	systeme.ajouter_typemateriel("Télévision",1,"télévision",100)
 	print (systeme.typemateriels)
-
+	systeme.ajouter_typesalle("Classe","Cool description")
+	systeme.ajouter_salle(1,1,1,10,"Classe")
+	systeme.supprimer_salle(1,1,1)
+	print(systeme.batiments)
 
 	"""ajouter_batiment(2,"bat_2","adresse_2")
 	modifier_batiment(2,"bat_3","adresse_3")

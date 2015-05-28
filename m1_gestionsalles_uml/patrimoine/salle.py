@@ -1,6 +1,6 @@
 class Salle(object):
 
-	def __init__(self,no_etage,no_salle,no_bat,superficie,typesalle):
+	def __init__(self, no_etage, no_salle, no_bat, superficie, typesalle):
 		self.no_etage = no_etage
 		self.no_salle = no_salle
 		self.no_bat = no_bat
