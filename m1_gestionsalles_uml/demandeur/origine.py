@@ -1,13 +1,15 @@
-class Origine(object):
+from finance.tabletarif import TableTarif
+
+class Origine(TableTarif):
 	"""Classe représentant l'origine d'un demandeur.
 
 	Attributs:
 		nom : Le nom de l'origine
 	"""
 
-	def __init__(self,nom):
-		self.nom = nom
-
+	def __init__(self, nom , code, libelle, montant):
+		super(Typemateriel, self).initialisation(code, libelle, montant)
+		self.nom
 
 	def __str__(self):
 		return "{}".format(self.nom)
