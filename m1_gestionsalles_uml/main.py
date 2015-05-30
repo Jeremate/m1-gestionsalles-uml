@@ -34,11 +34,11 @@ class GestionAPI(object):
 	def adresses(self):
 		return self._adresses
 
-	def ajouter_adresse(id_adresse, no, adresse, code, ville):
+	def ajouter_adresse(self, id_adresse, no, adresse, code, ville):
 		if id_adresse not in self._adresses:
 			self._adresses[id_adresse] = Adresse(no, adresse, code, ville)
 
-	def supprimer_adresse(id_adresse):
+	def supprimer_adresse(self, id_adresse):
 		if id_adresse in self._adresses:
 			del self._adresses[id_adresse]
 
@@ -76,16 +76,16 @@ class GestionAPI(object):
 	def typesalles(self):
 	    return self._typesalles
 
-	def ajouter_typesalle(self, nom_typesalle, description):
+	def ajouter_typesalle(self, nom_typesalle, code, libelle, montant):
 		if nom_typesalle not in self._typesalles:
-			nouveau_typesalle = typesalle.Typesalle(description)
+			nouveau_typesalle = typesalle.Typesalle(nom_typesalle, code, libelle, montant)
 			self._typesalles[nom_typesalle] = nouveau_typesalle
 
 	def supprimer_typesalle(self, nom_typesalle):
 		if nom_typesalle in self._typesalles:
 			del self._typesalles[nom_typesalle]
 
-	def consulter_typesalle(self, description):
+	def consulter_typesalle(self, nom_typesalle):
 		if nom_typesalle in self._typesalles:
 			return self._typesalles[nom_typesalle]
 
@@ -158,12 +158,13 @@ class GestionAPI(object):
 def main():
 
 	systeme = GestionAPI()
+	systeme.ajouter_adresse("Adresse 1", 10, "Rue des Landes", "44300", "Nantes")
 	systeme.ajouter_batiment(1,"Batiment 1","Adresse 1")
 	#systeme.supprimer_batiment(1)
 	print (systeme.rechercher_batiment(1))
 	systeme.ajouter_typemateriel("Télévision",1,"télévision",100)
 	print (systeme.typemateriels)
-	systeme.ajouter_typesalle("Classe","Cool description")
+	systeme.ajouter_typesalle("Classe", 1, "salle de classe", 200)
 	systeme.ajouter_salle(1,1,1,10,"Classe")
 	systeme.supprimer_salle(1,1,1)
 	print(systeme.batiments)

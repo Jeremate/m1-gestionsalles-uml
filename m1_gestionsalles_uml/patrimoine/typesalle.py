@@ -1,23 +1,27 @@
-class Typesalle(object):
+from finance.tabletarif import TableTarif
+
+class Typesalle(TableTarif):
 	"""Classe représentant un type de salle.
 
 	Attributs:
-		description : description du type de salle
+		id_titre : identifiant du type de salle
 	"""
 
-	def __init__(self,description):
-		self.description = description
+	def __init__(self, id_titre , code, libelle, montant):
+		super(Typesalle, self).initialisation(code, libelle, montant)
+		self.id_titre = id_titre
+
 
 	def __str__(self):
-		return "{}".format(self.description)
-	
+		return "{}".format(self.id_titre)
+
 	def __repr__(self):
-		return "{}".format(self.description)
+		return self._id_titre
 
 	@property
-	def description(self):
-	    return self._description
+	def id_titre(self):
+	    return self._id_titre
 
-	@description.setter
-	def description(self, val):
-		self._description = val
+	@id_titre.setter
+	def id_titre(self, val):
+		self._id_titre = val

@@ -1,24 +1,27 @@
-class Titre(object):
+from finance.tabletarif import TableTarif
+
+class Titre(Tabletarif):
 	"""Classe représentant le titre d'un demandeur.
 
 	Attributs:
-		description : La description du titre
+		id_titre ; identifiant du titre d'un demandeur
 	"""
 
-	def __init__(self,description):
-		self.description = description
+	def __init__(self, id_titre , code, libelle, montant):
+		super(Typemateriel, self).initialisation(code, libelle, montant)
+		self.id_titre = id_titre
 
 
 	def __str__(self):
-		return "{}".format(self.description)
+		return "{}".format(self.id_titre)
 
 	def __repr__(self):
-		return self._description
+		return self._id_titre
 
 	@property
-	def description(self):
-	    return self._description
+	def id_titre(self):
+	    return self._id_titre
 
-	@description.setter
-	def description(self, val):
-		self._description = val
+	@id_titre.setter
+	def id_titre(self, val):
+		self._id_titre = val

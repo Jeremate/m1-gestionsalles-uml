@@ -1,4 +1,5 @@
 from patrimoine.salle import Salle
+
 class Batiment(object):
 	"""Classe représentant un batiment.
 

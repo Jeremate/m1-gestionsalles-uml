@@ -9,7 +9,7 @@ class Origine(TableTarif):
 
 	def __init__(self, nom , code, libelle, montant):
 		super(Typemateriel, self).initialisation(code, libelle, montant)
-		self.nom
+		self.nom = nom
 
 	def __str__(self):
 		return "{}".format(self.nom)
