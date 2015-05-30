@@ -20,6 +20,11 @@ class Batiment(object):
 	def __repr__(self):
 		return "{} {} {} {}".format(self.no_bat, self.nom, self.adresse, self.salles)
 
+
+	def salle_presente(self, no_bat, no_etage, no_salle):
+		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
+		return id_salle in self.salles
+
 	@property
 	def nom(self):
 	    return self._nom

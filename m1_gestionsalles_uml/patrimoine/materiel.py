@@ -7,8 +7,10 @@ class Materiel(TableTarif):
 		code_inv : Le code inventaire du materiel
 	"""
 
-	def __init__(self,code_inv):
-		self._code_inv = code_inv
+	def __init__(self, code_inv, libelle, montant):
+		super(Materiel, self).initialisation(code_inv, libelle, montant)
+		self.code_inv = code_inv
+
 
 
 	def __str__(self):
