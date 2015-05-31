@@ -7,6 +7,11 @@ class Salle(object):
 		self.no_bat = no_bat
 		self.superficie = superficie
 		self.typesalle = typesalle
+		self.materiels = {}
+
+	def associer_materiel(self, code_inv, mat):
+		if code_inv not in self.materiels:
+			self.materiels[code_inv] = mat
 
 	@property
 	def no_etage(self):

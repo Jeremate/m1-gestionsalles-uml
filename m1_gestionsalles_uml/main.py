@@ -192,6 +192,11 @@ class GestionAPI(object):
 
 	#fonctionnalitées salle
 	#fonction d'ajout d'une salle si le batiment ou le typesalle n'existe pas alors la fonction est abandonné
+	def associer_materiel(self, no_bat, no_etage, no_salle, code_inv):
+		if no_bat in self._batiments:
+			if code_inv in self._materiels:
+				self._batiments[no_bat].associer_materiel(no_bat, no_etape, no_salle, code_inv, self._materiels[code_inv])
+
 	def salles(self):
 		return self._salles
 
@@ -233,7 +238,7 @@ class GestionAPI(object):
 		return self._reservations
 
 	def calculer_montant(self, ref_resa):
-		self._reservations[ref_resa].montant = 0
+		self._reservations[ref_resa].montant = 10
 
 	def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
 		if ref_resa not in self._reservations:	
@@ -241,6 +246,10 @@ class GestionAPI(object):
 				if self._batiments[no_bat].salle_presente(no_bat, no_etage, no_salle):
 					self._reservations[ref_resa] = Reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
 					self.calculer_montant(ref_resa)
+
+	def consulter_reservation(self, ref_resa):
+		if ref_resa in self._reservations:
+			return self._reservations[ref_resa]
 
 	reservations = property(reservations, ajouter_reservation)
 
@@ -253,13 +262,14 @@ def main():
 	systeme.ajouter_adresse("Adresse 1", 10, "Rue des Landes", "44300", "Nantes")
 	systeme.ajouter_batiment(1,"Batiment 1","Adresse 1")
 	#systeme.supprimer_batiment(1)
-	print (systeme.rechercher_batiment(1))
+	#print (systeme.rechercher_batiment(1))
 	systeme.ajouter_typemateriel("Télévision","télévision HD LCD",100)
 	print (systeme.typemateriels)
 	systeme.ajouter_typesalle("Classe", "salle de classe", 200)
 	systeme.ajouter_salle(1,1,1,10,"Classe")
 	#systeme.supprimer_salle(1,1,1)
 	print(systeme.batiments)
+	systeme.associer_materiel(1,1,1,"Télévision")
 	systeme.ajouter_origine("Resident","résident",100)
 	systeme.ajouter_titre("Etudiant", "Etudiant", 100)
 	systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", "Resident", "Etudiant")

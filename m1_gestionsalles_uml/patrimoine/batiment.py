@@ -15,6 +15,11 @@ class Batiment(object):
 		self.adresse = adresse
 		self.salles = {}
 
+
+	def associer_materiel(self, no_bat, no_etage, no_salle, code_inv, mat):
+		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
+		self.salles[id_salle].associer_materiel(code_inv, mat)
+
 	def __str__(self):
 		return "{} {} {} {}".format(self.no_bat, self.nom, self.adresse, self.salles)
 
@@ -50,4 +55,5 @@ class Batiment(object):
 		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
 		if id_salle in self.salles:
 			del self.salles[id_salle]
+
 		
