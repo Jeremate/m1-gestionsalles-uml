@@ -238,7 +238,11 @@ class GestionAPI(object):
 		return self._reservations
 
 	def calculer_montant(self, ref_resa):
-		self._reservations[ref_resa].montant = 10
+		res = 0
+		for salle in self._batiments[self._reservations[ref_resa].no_bat].salles:
+			res = res + salle.typesalle.montant
+			print(res)
+		self._reservations[ref_resa].montant = 1000
 
 	def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
 		if ref_resa not in self._reservations:	
