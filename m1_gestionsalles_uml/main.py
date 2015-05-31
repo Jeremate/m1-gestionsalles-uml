@@ -1,9 +1,8 @@
 from patrimoine import batiment
-from patrimoine import typesalle
+from patrimoine.typesalle import TypeSalle
 from patrimoine import materiel
 from patrimoine import typemateriel
 from patrimoine import salle
-from patrimoine import typesalle
 from finance.tabletarif import TableTarif
 from localisation.adresse import Adresse
 from demandeur.titre import Titre
@@ -136,18 +135,17 @@ class GestionAPI(object):
 	def typesalles(self):
 	    return self._typesalles
 
-	def ajouter_typesalle(self, nom_typesalle, code, libelle, montant):
-		if nom_typesalle not in self._typesalles:
-			nouveau_typesalle = typesalle.Typesalle(nom_typesalle, code, libelle, montant)
-			self._typesalles[nom_typesalle] = nouveau_typesalle
+	def ajouter_typesalle(self, code, libelle, montant):
+		if code not in self._typesalles:
+			self._typesalles[code] = TypeSalle(code, libelle, montant)
 
-	def supprimer_typesalle(self, nom_typesalle):
-		if nom_typesalle in self._typesalles:
-			del self._typesalles[nom_typesalle]
+	def supprimer_typesalle(self, code):
+		if code in self._typesalles:
+			del self._typesalles[code]
 
-	def consulter_typesalle(self, nom_typesalle):
-		if nom_typesalle in self._typesalles:
-			return self._typesalles[nom_typesalle]
+	def consulter_typesalle(self, code):
+		if code in self._typesalles:
+			return self._typesalles[code]
 
 	typesalles = property(typesalles, ajouter_typesalle)
 
@@ -235,13 +233,19 @@ class GestionAPI(object):
 	def reservations(self):
 		return self._reservations
 
-	def ajouter_reservation(self, ref_resa, date, montant, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
+	def calculer_montant(self, ref_resa):
+		self._reservations[ref_resa].montant = 0
+
+	def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
 		if ref_resa not in self._reservations:	
 			if no_bat in self._batiments:
 				if self._batiments[no_bat].salle_presente(no_bat, no_etage, no_salle):
-					self._reservations[ref_resa] = Reservation(ref_resa, date, montant, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
+					self._reservations[ref_resa] = Reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
+					self.calculer_montant(ref_resa)
 
 	reservations = property(reservations, ajouter_reservation)
+
+	
 	#----------------------------------------
 
 def main():
@@ -253,15 +257,15 @@ def main():
 	print (systeme.rechercher_batiment(1))
 	systeme.ajouter_typemateriel("Télévision",1,"télévision",100)
 	print (systeme.typemateriels)
-	systeme.ajouter_typesalle("Classe", 1, "salle de classe", 200)
+	systeme.ajouter_typesalle("Classe", "salle de classe", 200)
 	systeme.ajouter_salle(1,1,1,10,"Classe")
 	#systeme.supprimer_salle(1,1,1)
 	print(systeme.batiments)
-	systeme.ajouter_origine("Francaise","Francaise",100)
+	systeme.ajouter_origine("Residant","résidant",100)
 	systeme.ajouter_titre("Etudiant", "Etudiant", 100)
-	systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", "Francaise", "Etudiant")
+	systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", "Residant", "Etudiant")
 	print(systeme.demandeurs)
-	systeme.ajouter_reservation(1, "31/05/2015", 100, 1, 1, 1, 1, 1, 1)
+	systeme.ajouter_reservation(1, "31/05/2015", 1, 1, 1, 1, 1, 1)
 	print(systeme.reservations)
 
 if __name__ == '__main__':

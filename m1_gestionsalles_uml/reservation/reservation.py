@@ -12,11 +12,11 @@ class Reservation(object):
 
 	"""
 	
-	def __init__(self, ref_resa, date, montant, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
+	def __init__(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
 		super(Reservation, self).__init__()
 		self.ref_resa = ref_resa
 		self.date = date
-		self.montant = montant
+		self.montant = 0
 		self.no_dem = no_dem
 		self.id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
 		self.code_manifestation = code_manifestation
@@ -51,3 +51,12 @@ class Reservation(object):
 	@no_dem.setter
 	def no_dem(self, val):
 		self._no_dem = val
+
+	@property
+	def montant(self):
+	    return self._montant
+
+	@montant.setter
+	def montant(self,val):
+		self._montant = val
+	
