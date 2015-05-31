@@ -29,6 +29,6 @@ class Materiel(object):
 	def typemateriel(self):
 	    return self._typemateriel
 
-	@code_inv.setter
+	@typemateriel.setter
 	def typemateriel(self, val):
 		self._typemateriel = val
