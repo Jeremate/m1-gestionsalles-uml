@@ -1,6 +1,7 @@
 class Salle(object):
 
 	def __init__(self, no_etage, no_salle, no_bat, superficie, typesalle):
+		super(Salle, self).__init__()
 		self.no_etage = no_etage
 		self.no_salle = no_salle
 		self.no_bat = no_bat
@@ -38,6 +39,14 @@ class Salle(object):
 	@superficie.setter
 	def superficie(self, val):
 		self._superficie = val
+
+	@property
+	def typesalle(self):
+	    return self._typesalle
+
+	@typesalle.setter
+	def typesalle(self, val):
+		self._typesalle = val
 
 	def __repr__(self):
 		return "{} {} {} {} {}".format(self.no_salle, self.no_bat, self.no_etage, self.superficie, self.typesalle)
