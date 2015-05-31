@@ -9,6 +9,7 @@ class Batiment(object):
 		adresse : L'objet contenant l'adresse du batiment
 	"""
 	def __init__(self,no_bat,nom,adresse):
+		super(Batiment, self).__init__()
 		self.no_bat = no_bat
 		self.nom = nom
 		self.adresse = adresse
