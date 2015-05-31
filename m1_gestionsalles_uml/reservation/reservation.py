@@ -19,6 +19,7 @@ class Reservation(object):
 		self.date = time.strptime(date, "%d/%m/%Y")
 		self.montant = 0
 		self.no_dem = no_dem
+		self.no_bat = no_bat
 		self.id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
 		self.code_manifestation = code_manifestation
 		self.code_duree = code_duree
@@ -60,4 +61,27 @@ class Reservation(object):
 	@montant.setter
 	def montant(self,val):
 		self._montant = val
+
+	@property
+	def no_bat(self):
+	    return self._no_bat
+
+	@no_bat.setter
+	def no_bat(self,val):
+		self._no_bat = val
 	
+	@property
+	def code_manifestation(self):
+	    return self._code_manifestation
+
+	@code_manifestation.setter
+	def code_manifestation(self,val):
+		self._code_manifestation = val
+
+	@property
+	def code_duree(self):
+	    return self._code_duree
+
+	@code_duree.setter
+	def code_duree(self,val):
+		self._code_duree = val

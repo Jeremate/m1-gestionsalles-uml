@@ -239,17 +239,26 @@ class GestionAPI(object):
 
 	def calculer_montant(self, ref_resa):
 		res = 0
-		for salle in self._batiments[self._reservations[ref_resa].no_bat].salles:
-			res = res + salle.typesalle.montant
-			print(res)
-		self._reservations[ref_resa].montant = 1000
+		liste_salle = self._batiments[self._reservations[ref_resa].no_bat].salles
+		for salle in liste_salle:
+			res = res + self._typesalles[liste_salle[salle].typesalle].montant
+			liste_mat = liste_salle[salle].materiels
+			for mat in liste_mat:
+				res = res + self._typemateriels[liste_mat[mat].typemateriel].montant
+		res = res + self._origines[self._demandeurs[self._reservations[ref_resa].no_dem].origine].montant
+		res = res + self._titres[self._demandeurs[self._reservations[ref_resa].no_dem].titre].montant
+		res = res + self._manifestations[self._reservations[ref_resa].code_manifestation].montant
+		res = res + self._durees[self._reservations[ref_resa].code_duree].montant
+		self._reservations[ref_resa].montant = res
 
 	def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
 		if ref_resa not in self._reservations:	
 			if no_bat in self._batiments:
-				if self._batiments[no_bat].salle_presente(no_bat, no_etage, no_salle):
-					self._reservations[ref_resa] = Reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
-					self.calculer_montant(ref_resa)
+				if code_manifestation in self._manifestations:
+					if code_duree in self._durees:
+						if self._batiments[no_bat].salle_presente(no_bat, no_etage, no_salle):
+							self._reservations[ref_resa] = Reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
+							self.calculer_montant(ref_resa)
 
 	def consulter_reservation(self, ref_resa):
 		if ref_resa in self._reservations:
@@ -276,9 +285,12 @@ def main():
 	systeme.associer_materiel(1,1,1,"Télévision")
 	systeme.ajouter_origine("Resident","résident",100)
 	systeme.ajouter_titre("Etudiant", "Etudiant", 100)
+	systeme.ajouter_manifestation("Gratuit","Evenement gratuit", 0)
+	systeme.ajouter_duree("30","30 minutes",50)
+	print(systeme.durees)
 	systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", "Resident", "Etudiant")
 	print(systeme.demandeurs)
-	systeme.ajouter_reservation(1, "31/05/2015", 1, 1, 1, 1, 1, 1)
+	systeme.ajouter_reservation(1, "31/05/2015", 1, 1, 1, 1, "Gratuit", "30")
 	print(systeme.reservations)
 
 if __name__ == '__main__':

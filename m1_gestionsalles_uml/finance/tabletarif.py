@@ -4,25 +4,25 @@ class TableTarif(object):
 	"""Classe abstraite
 
 	Attributs:
-		code : code du tarif
-		libelle : libelle du tarif
-		montant : montant du tarif
+		code : code du montant
+		libelle : libelle du montant
+		montant : montant
 
 	"""
 	__metaclass__ = abc.ABCMeta
 
 
 	@abc.abstractmethod
-	def initialisation(self, code, libelle, tarif):
+	def initialisation(self, code, libelle, montant):
 		self.code = code
 		self.libelle = libelle
-		self.tarif = tarif
+		self.montant = montant
 
 	def __repr__(self):
-		return "{} {} {}".format(self.code, self.libelle, self.tarif)
+		return "{} {} {}".format(self.code, self.libelle, self.montant)
 	
 	def __str__(self):
-		return "{} {} {}".format(self.code, self.libelle, self.tarif)
+		return "{} {} {}".format(self.code, self.libelle, self.montant)
 
 	def recuperer_code(self):
 		return self._code
@@ -40,10 +40,10 @@ class TableTarif(object):
 
 	libelle = abc.abstractproperty(recuperer_libelle,indiquer_libelle)
 
-	def recuperer_tarif(self):
-		return self._tarif
+	def recuperer_montant(self):
+		return self._montant
 
-	def indiquer_tarif(self, val):
-		self._tarif = val
+	def indiquer_montant(self, val):
+		self._montant = val
 
-	tarif = abc.abstractproperty(recuperer_tarif, indiquer_tarif)
+	montant = abc.abstractproperty(recuperer_montant, indiquer_montant)
