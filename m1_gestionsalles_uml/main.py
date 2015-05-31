@@ -254,7 +254,7 @@ def main():
 	systeme.ajouter_batiment(1,"Batiment 1","Adresse 1")
 	#systeme.supprimer_batiment(1)
 	print (systeme.rechercher_batiment(1))
-	systeme.ajouter_typemateriel("Télévision",1,"télévision",100)
+	systeme.ajouter_typemateriel("Télévision","télévision HD LCD",100)
 	print (systeme.typemateriels)
 	systeme.ajouter_typesalle("Classe", "salle de classe", 200)
 	systeme.ajouter_salle(1,1,1,10,"Classe")
