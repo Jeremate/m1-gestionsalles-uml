@@ -1,10 +1,10 @@
 from finance.tabletarif import TableTarif
 
-class Typemateriel(TableTarif):
+class TypeMateriel(TableTarif):
 	"""Classe représentant un type de materiel.
 
 	"""
 
-	def __init__(self, nom , code, libelle, montant):
-		super(Typemateriel, self).initialisation(code, libelle, montant)
+	def __init__(self, code, libelle, montant):
+		super(TypeMateriel, self).initialisation(code, libelle, montant)
 

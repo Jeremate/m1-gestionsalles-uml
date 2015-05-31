@@ -1,7 +1,7 @@
 from patrimoine import batiment
 from patrimoine.typesalle import TypeSalle
 from patrimoine import materiel
-from patrimoine import typemateriel
+from patrimoine.typemateriel import TypeMateriel
 from patrimoine import salle
 from finance.tabletarif import TableTarif
 from localisation.adresse import Adresse
@@ -176,10 +176,9 @@ class GestionAPI(object):
 	def typemateriels(self):
 	    return self._typemateriels
 
-	def ajouter_typemateriel(self, nom, code, libelle, montant):
-		if nom not in self._typemateriels:
-			nouveau_typemateriel = typemateriel.Typemateriel(nom, code, libelle, montant)
-			self._typemateriels[nom] = nouveau_typemateriel
+	def ajouter_typemateriel(self, code, libelle, montant):
+		if code not in self._typemateriels:
+			self._typemateriels[code] = TypeMateriel(code, libelle, montant)
 
 	def supprimer_typemateriel(self, nom):
 		if nom in self._typemateriels:
