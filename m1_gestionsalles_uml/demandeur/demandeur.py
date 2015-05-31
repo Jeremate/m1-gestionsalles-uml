@@ -10,6 +10,7 @@ class Demandeur(object):
 
 	"""
 	def __init__(self,no_dem,nom,id_adresse,origine,titre):
+		super(Demandeur, self).__init__()
 		self.no_dem = no_dem
 		self.nom = nom
 		self.adresse = id_adresse
