@@ -4,15 +4,15 @@ class Demandeur(object):
 	Attributs:
 		no_dem : numéro unique du demandeur
 		nom : nom du demandeur
-		adresse : adresse du demandeur
+		adresse : identifiant de l'adresse du demandeur
 		origine : origine du demandeur
 		titre : titre du deandeur
 
 	"""
-	def __init__(self,no_dem,nom,adresse,origine,titre):
+	def __init__(self,no_dem,nom,id_adresse,origine,titre):
 		self.no_dem = no_dem
 		self.nom = nom
-		self.adresse = adresse
+		self.adresse = id_adresse
 		self.origine = origine
 		self.titre = titre 
 
