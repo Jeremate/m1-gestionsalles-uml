@@ -15,27 +15,10 @@ from reservation.duree import Duree
 #variables
 
 class GestionAPI(object):
-	"""Classe représentant le systeme de gestion de salle
-
-	Attributs:
-
-	"""
+	#Classe représentant le systeme de gestion de salle
 	
 	def __init__(self):
 		super(GestionAPI, self).__init__()
-		self._batiments = {}
-		self._materiels = {}
-		self._typemateriels = {}
-		self._typesalles = {}
-		self._demandeurs = {}
-		self._reservations = {}
-		self._origines = {}
-		self._titres = {}
-		self._durees = {}
-		self._manifestations = {}
-		self._adresses = {}
-
-
 
 	def adresses(self):
 		return self._adresses

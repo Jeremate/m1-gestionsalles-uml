@@ -1,23 +1,25 @@
 from demandeur.titre import Titre
 from demandeur.origine import Origine
 from demandeur.demandeur import Demandeur
+from localisation.gestionlocalisation import GestionLocalisation
 
 class GestionDemandeur(object):
 
 	def __init__(self):
 		self.demandeurs = {}
 		self.titres = {}
+		self.origines = {}
 
 	#fonctionnalitées pour la classe demandeur
 	def demandeurs(self):
 		return self._demandeurs
 
-	def ajouter_demandeur(self, no_dem, nom, id_adresse, code_origine, id_titre):
+	def ajouter_demandeur(self, no_dem, nom, id_adresse, code_origine, code_titre):
 		if no_dem not in self._demandeurs:
 			if code_origine in self._origines:
 				if code_titre in self._titres:
 					if id_adresse in self._adresses:
-						self._demandeurs[no_dem] = Demandeur(no_dem, nom , id_adresse, nom_origine, id_titre)
+						self._demandeurs[no_dem] = Demandeur(no_dem, nom , id_adresse, code_origine, code_titre)
 
 	def supprimer_demandeur(self, no_dem):
 		if no_dem in self._demandeurs:
@@ -55,4 +57,3 @@ class GestionDemandeur(object):
 	origines = property(origines,ajouter_origine)
 	#------------------------------------------
 
-	

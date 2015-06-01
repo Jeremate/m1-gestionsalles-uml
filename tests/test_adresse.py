@@ -1,4 +1,5 @@
 import m1_gestionsalles_uml.localisation.adresse as loc_adr
+import m1_gestionsalles_uml.localisation.gestionlocalisation as gesloc
 
 class TestAdresse:
 	"""Tests pour la classe Adresse"""
@@ -18,3 +19,9 @@ class TestAdresse:
 		adresse1 = loc_adr.Adresse(1, "Boulevard Michelet", 44000, "nantes")
 		adresse2 = loc_adr.Adresse(3, "Boulevard Michelet", 44000, "Nantes")
 		assert adresse1 != adresse2
+
+class TestGestionLocalisation:
+	""" Tests pour la classe gestionlocalisation """
+	def test_init(self):
+		api = gesloc.GestionLocalisation()
+		assert api.adresses == {}
