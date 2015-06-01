@@ -74,7 +74,7 @@ class GestionAPI(object):
 		if code in self._manifestations:
 			del self._manifestations[code]
 
-	manifestations = property(manifestations, ajouter_titre)
+	manifestations = property(manifestations, ajouter_manifestation)
 
 
 	def durees(self):
@@ -286,11 +286,11 @@ def main():
 	systeme.ajouter_origine("Resident","résident",100)
 	systeme.ajouter_titre("Etudiant", "Etudiant", 100)
 	systeme.ajouter_manifestation("Gratuit","Evenement gratuit", 0)
-	systeme.ajouter_duree("30","30 minutes",50)
+	systeme.ajouter_duree("2","2 heures minutes",50)
 	print(systeme.durees)
 	systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", "Resident", "Etudiant")
 	print(systeme.demandeurs)
-	systeme.ajouter_reservation(1, "31/05/2015", 1, 1, 1, 1, "Gratuit", "30")
+	systeme.ajouter_reservation(1, "31/05/2015", 1, 1, 1, 1, "Gratuit", "2")
 	print(systeme.reservations)
 
 if __name__ == '__main__':
