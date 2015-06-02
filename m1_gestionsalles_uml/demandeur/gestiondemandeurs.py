@@ -70,12 +70,3 @@ class GestionDemandeur(object):
 	demandeurs = property(demandeurs)
 	#---------------------------------------------
 
-a = GestionDemandeur()
-b = GestionLocalisation()
-b.ajouter_adresse(1,1,1,1,"a")
-#a.ajouter_adresse(1,1,1,1,"a")
-a.ajouter_origine(1,"resident",100)
-a.ajouter_titre(1,"etudiant",100)
-a.ajouter_demandeur(1,"Boceno",1,1,1)
-print(a.demandeurs)
-#print(a.adresses)
