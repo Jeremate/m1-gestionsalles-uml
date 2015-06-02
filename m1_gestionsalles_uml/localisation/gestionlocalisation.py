@@ -1,9 +1,7 @@
-from adresse import Adresse
+from localisation.adresse import Adresse
 
 class GestionLocalisation(object):
-""" Classe qui permet de gérer les adresses
 
-Implémentation d'une classe Singelton """
 	__instance = None
 
 	def __new__(cls):
