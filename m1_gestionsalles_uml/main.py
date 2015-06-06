@@ -1,24 +1,15 @@
-from patrimoine import batiment
-from patrimoine.typesalle import TypeSalle
-from patrimoine import materiel
-from patrimoine.typemateriel import TypeMateriel
-from patrimoine import salle
-from finance.tabletarif import TableTarif
-from localisation.adresse import Adresse
-from demandeur.titre import Titre
-from demandeur.origine import Origine
-from demandeur.demandeur import Demandeur
-from reservation.reservation import Reservation
-from reservation.manifestation import Manifestation
-from reservation.duree import Duree
+from patrimoine.gestionpatrimoine import GestionPatrimoine
+from demandeur.gestiondemandeur import GestionDemandeur
+from localisation.gestionlocalisation import GestionLocalisation
+from reservation.gestionreservation import GestionReservation
 
-#variables
 
 class GestionAPI(object):
 	#Classe représentant le systeme de gestion de salle
 	
 	def __init__(self):
 		super(GestionAPI, self).__init__()
+		
 
 	def adresses(self):
 		return self._adresses
