@@ -113,7 +113,3 @@ class GestionReservation(object):
 			del self._durees[code]
 
 	durees = property(durees)
-
-a = GestionReservation()
-a.ajouter_duree(1,"30 minute",100)
-print(a.durees)

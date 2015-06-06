@@ -9,236 +9,177 @@ class GestionAPI(object):
 	
 	def __init__(self):
 		super(GestionAPI, self).__init__()
-		
+		GP = GestionPatrimoine()
+		GD = GestionDemandeur()
+		GL = GestionLocalisation()
+		GR = GestionReservation()
 
 	def adresses(self):
-		return self._adresses
+		return GL.adresses
 
 	def ajouter_adresse(self, id_adresse, no, adresse, code, ville):
-		if id_adresse not in self._adresses:
-			self._adresses[id_adresse] = Adresse(no, adresse, code, ville)
+		GL.ajouter_adresse(id_adresse, no, adresse, code, ville)
 
 	def supprimer_adresse(self, id_adresse):
-		if id_adresse in self._adresses:
-			del self._adresses[id_adresse]
+		GL.supprimer_adresse(id_adresse)
 
-	adresses = property(adresses,ajouter_adresse)
+	adresses = property(adresses)
 
 	def titres(self):
-		return self._titres
+		return GD.titres
 
 	def ajouter_titre(self, code, libelle, montant):
-		if code not in self._titres:
-			self._titres[code] = Titre(code, libelle, montant)
+		GD.ajouter_titre(code, libelle, montant)
 
 	def supprimer_titre(self, code):
-		if code in self._titres:
-			del self._titres[code]
+		GD.supprimer_titre(code)
 
-	titres = property(titres, ajouter_titre)
+	titres = property(titres)
 
 	def manifestations(self):
-		return self._manifestations
+		return GR.manifestations
 
 	def ajouter_manifestation(self, code, libelle, montant):
-		if code not in self._manifestations:
-			self._manifestations[code] = Manifestation(code, libelle, montant)
+		GR.ajouter_manifestation(code, libelle, montant)
 
 	def supprimer_manifestation(self, code):
-		if code in self._manifestations:
-			del self._manifestations[code]
+		GR.supprimer_manifestation(code)
 
-	manifestations = property(manifestations, ajouter_manifestation)
+	manifestations = property(manifestations)
 
 
 	def durees(self):
-		return self._durees
+		return GR.durees
 
 	def ajouter_duree(self, code, libelle, montant):
-		if code not in self._durees:
-			self._durees[code] = Duree(code, libelle, montant)
+		GR.ajouter_duree(code, libelle, montant)
 
 	def supprimer_duree(self, code):
-		if code in self._durees:
-			del self._durees[code]
+		GR.supprimer_duree(code)
 
-	durees = property(durees, ajouter_titre)
+	durees = property(durees)
 
 	def origines(self):
-		return self._origines
+		return GD.origines
 
 	def ajouter_origine(self, code, libelle, montant):
-		if code not in self._origines:
-			self._origines[code] = Origine(code, libelle, montant)
+		GD.ajouter_origine(code, libelle, montant)
 
 	def supprimer_origine(self, code):
-		if code in self._origines:
-			del self._origines[code]
+		GD.supprimer_origine(code)
 
-	origines = property(origines,ajouter_origine)
+	origines = property(origines)
 
 	def batiments(self):
-	    return self._batiments
-
+	    return GP.batiments
 
 	def ajouter_batiment(self,no_bat, nom, adresse):
-		if no_bat not in self._batiments:
-			nouveau_bat = batiment.Batiment(no_bat, nom, adresse)
-			self._batiments[no_bat] = nouveau_bat
+		GP.ajouter_batiment(no_bat, nom, adresse)
 
-
-	batiments = property(batiments, ajouter_batiment)
+	batiments = property(batiments)
 	
-
 	def rechercher_batiment(self, no_bat):
-		if no_bat in self._batiments:
-			return self._batiments[no_bat]
-
+		GP.rechercher_batiment(no_bat)
 
 	def modifier_batiment(self, no_bat, nom, adresse):
-		if no_bat in self._batiments:
-			nouveau_bat = batiment.Batiment(no_bat, nom, adresse)
-			self._batiments[no_bat] = nouveau_bat
+		GP.modifier_batiment(no_bat, nom, adresse)
 
 	def supprimer_batiment(self, no_bat):
-		if no_bat not in self._batiments:
-			del self._batiments[no_bat]
-
+		GP.supprimer_batiment(no_bat)
+	#------------------------------------------
 
 	#fonctionnalitées typesalle
 	def typesalles(self):
-	    return self._typesalles
+	    return GP.typesalles
 
 	def ajouter_typesalle(self, code, libelle, montant):
-		if code not in self._typesalles:
-			self._typesalles[code] = TypeSalle(code, libelle, montant)
+		GP.ajouter_typesalle(code, libelle, montant)
 
 	def supprimer_typesalle(self, code):
-		if code in self._typesalles:
-			del self._typesalles[code]
+		GP.supprimer_typesalle(code)
 
 	def consulter_typesalle(self, code):
-		if code in self._typesalles:
-			return self._typesalles[code]
+		GP.consulter_typesalle(code)
 
-	typesalles = property(typesalles, ajouter_typesalle)
-
+	typesalles = property(typesalles)
+	#-------------------------------------------
 
 	#fonctionnalitées materiel
-
 	def materiels(self):
-	    return self._materiels
+	    return GP.materiels
 
 	def ajouter_materiel(self, code_inv, libelle, montant):
-		if code_inv not in self._materiels:
-			nouveau_materiel = materiel.Materiel(code_inv)
-			self._materiels[code_inv] = nouveau_materiel
+		GP.ajouter_materiel(code_inv, libelle, montant)
 
 	def supprimer_materiel(self, code_inv):
-		if code_inv in self._materiels:
-			del self._materiels[code_inv]
+		GP.supprimer_materiel(code_inv)
 
 	def consulter_materiel(self, code_inv):
-		if code_inv in self._materiels:
-			return self._materiels[code_inv]
+		GP.consulter_materiel(code_inv)
 
-	materiels = property(materiels,ajouter_materiel)
-	#--------------------------------
-
+	materiels = property(materiels)
+	#------------------------------------------
 
 	#fonctionnalitées typemateriel
 	def typemateriels(self):
-	    return self._typemateriels
+	    return GP.typemateriels
 
 	def ajouter_typemateriel(self, code, libelle, montant):
-		if code not in self._typemateriels:
-			self._typemateriels[code] = TypeMateriel(code, libelle, montant)
+		GP.ajouter_typemateriel(code, libelle, montant)
 
 	def supprimer_typemateriel(self, nom):
-		if nom in self._typemateriels:
-			del self._typemateriels[nom]
+		GP.supprimer_typemateriel(nom)
 
 	def consulter_typemateriel(self, nom):
-		if nom in self._typemateriels:
-			return self._typemateriels[nom]
+		GP.consulter_typemateriel(nom)
 
-	typemateriels = property(typemateriels,ajouter_typemateriel)
+	typemateriels = property(typemateriels)
 
 	#fonctionnalitées salle
 	#fonction d'ajout d'une salle si le batiment ou le typesalle n'existe pas alors la fonction est abandonné
 	def associer_materiel(self, no_bat, no_etage, no_salle, code_inv):
-		if no_bat in self._batiments:
-			if code_inv in self._materiels:
-				self._batiments[no_bat].associer_materiel(no_bat, no_etape, no_salle, code_inv, self._materiels[code_inv])
+		GP.associer_materiel(no_bat, no_etage, no_salle, code_inv)
 
 	def salles(self):
-		return self._salles
+		return GP.salles
 
 	def ajouter_salle(self, no_bat, no_etage, no_salle, superficie, nom_typesalle):
-		if no_bat in self._batiments:
-			if nom_typesalle in self._typesalles:
-				self._batiments[no_bat].ajouter_salle(no_etage, no_salle, no_bat, superficie, nom_typesalle)
+		GP.ajouter_salle(no_bat, no_etage, no_salle, superficie, nom_typesalle)
 
 	#fonction pour supprimer une salle
 	def supprimer_salle(self, no_bat, no_etage, no_salle):
-		if no_bat in self._batiments:
-			#for r in self._reservations:
-				#if r in self._reservations:
-			self._batiments[no_bat].supprimer_salle(no_bat, no_etage, no_salle)
+		GP.supprimer_salle(no_bat, no_etage, no_salle)
 
-	salles = property(salles, ajouter_salle)
+	salles = property(salles)
 	#-------------------------------
 
 	#fonctionnalitées pour la classe demandeur
 	def demandeurs(self):
-		return self._demandeurs
+		return GD.demandeurs
 
 	def ajouter_demandeur(self, no_dem, nom, id_adresse, nom_origine, id_titre):
-		if no_dem not in self._demandeurs:
-			if nom_origine in self._origines:
-				if id_titre in self._titres:
-					if id_adresse in self._adresses:
-						self._demandeurs[no_dem] = Demandeur(no_dem, nom , id_adresse, nom_origine, id_titre)
+		GD.ajouter_demandeur(no_dem, nom, id_adresse, nom_origine, id_titre)
 
 	def supprimer_demandeur(self, no_dem):
-		if no_dem in self._demandeurs:
-			del self._demandeurs[no_dem]
+		GD.supprimer_demandeur(no_dem)
 
-	demandeurs = property(demandeurs, ajouter_demandeur)
+	demandeurs = property(demandeurs)
 	#--------------------------------
 
 	#fonctionnalitées pour la classe réservation
 	def reservations(self):
-		return self._reservations
+		return GR.reservations
 
 	def calculer_montant(self, ref_resa):
-		res = 0
-		liste_salle = self._batiments[self._reservations[ref_resa].no_bat].salles
-		for salle in liste_salle:
-			res = res + self._typesalles[liste_salle[salle].typesalle].montant
-			liste_mat = liste_salle[salle].materiels
-			for mat in liste_mat:
-				res = res + self._typemateriels[liste_mat[mat].typemateriel].montant
-		res = res + self._origines[self._demandeurs[self._reservations[ref_resa].no_dem].origine].montant
-		res = res + self._titres[self._demandeurs[self._reservations[ref_resa].no_dem].titre].montant
-		res = res + self._manifestations[self._reservations[ref_resa].code_manifestation].montant
-		res = res + self._durees[self._reservations[ref_resa].code_duree].montant
-		self._reservations[ref_resa].montant = res
+		GR.calculer_montant(ref_resa)
 
 	def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
-		if ref_resa not in self._reservations:	
-			if no_bat in self._batiments:
-				if code_manifestation in self._manifestations:
-					if code_duree in self._durees:
-						if self._batiments[no_bat].salle_presente(no_bat, no_etage, no_salle):
-							self._reservations[ref_resa] = Reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
-							self.calculer_montant(ref_resa)
+		GR.ajouter_reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
 
 	def consulter_reservation(self, ref_resa):
-		if ref_resa in self._reservations:
-			return self._reservations[ref_resa]
+		GR.consulter_reservation(ref_resa)
 
-	reservations = property(reservations, ajouter_reservation)
+	reservations = property(reservations)
 
 	
 	#----------------------------------------
