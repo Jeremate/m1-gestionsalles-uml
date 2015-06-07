@@ -51,14 +51,13 @@ class TestGestionAPI(object):
 	def test_ajouter_origine(self):
 		systeme = GestionAPI()
 		systeme.ajouter_origine(1, "Résident", 100)
-		systeme.supprimer_origine(1)
-		assert str(systeme.origine) == "{1: 1 Résident 100}"
+		assert str(systeme.origines) == "{1: 1 Résident 100}"
 
 	def test_supprimer_origine(self):
 		systeme = GestionAPI()
 		systeme.ajouter_origine(1, "Résident", 100)
 		systeme.supprimer_origine(1)
-		assert systeme.origine == {}
+		assert systeme.origines == {}
 
 	# origines = property(origines)
 
