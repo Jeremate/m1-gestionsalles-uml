@@ -59,110 +59,103 @@ class TestGestionAPI(object):
 		systeme.supprimer_origine(1)
 		assert systeme.origines == {}
 
-	# origines = property(origines)
-
-	# def batiments(self):
-	#     return self.GP.batiments
-
-	# def ajouter_batiment(self,no_bat, nom, adresse):
-	# 	self.GP.ajouter_batiment(no_bat, nom, adresse)
-
-	# batiments = property(batiments)
+	def test_ajouter_batiment(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_batiment(1,"Université sciences et techniques", "Adresse 1")
+		assert str(systeme.batiments) == "{1: 1 Université sciences et techniques Adresse 1 {}}"
 	
-	# def rechercher_batiment(self, no_bat):
-	# 	self.GP.rechercher_batiment(no_bat)
+	def test_rechercher_batiment(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_batiment(1,"Université sciences et techniques", "Adresse 1")
+		assert systeme.rechercher_batiment(1) == systeme.batiments[1]
 
-	# def modifier_batiment(self, no_bat, nom, adresse):
-	# 	self.GP.modifier_batiment(no_bat, nom, adresse)
+	def test_modifier_batiment(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_batiment(1,"Université sciences et techniques", "Adresse 1")
+		systeme.modifier_batiment(1,"Changement description", "Adresse 1")
+		assert str(systeme.batiments) == "{1: 1 Changement description Adresse 1 {}}"
 
-	# def supprimer_batiment(self, no_bat):
-	# 	self.GP.supprimer_batiment(no_bat)
-	# #------------------------------------------
+	def test_supprimer_batiment(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_batiment(1,"Université sciences et techniques", "Adresse 1")
+		systeme.supprimer_batiment(1)
+		assert systeme.batiments == {}
 
-	# #fonctionnalitées typesalle
-	# def typesalles(self):
-	#     return self.GP.typesalles
+	def test_ajouter_typesalle(self):
+		systeme = GestionAPI()
+		systeme.ajouter_typesalle(1,"Classe",100)
+		assert str(systeme.typesalles) == "{1: 1 Classe 100}"
 
-	# def ajouter_typesalle(self, code, libelle, montant):
-	# 	self.GP.ajouter_typesalle(code, libelle, montant)
+	def test_supprimer_typesalle(self):
+		systeme = GestionAPI()
+		systeme.ajouter_typesalle(1,"Classe",100)
+		systeme.supprimer_typesalle(1)
+		assert systeme.typesalles == {}
 
-	# def supprimer_typesalle(self, code):
-	# 	self.GP.supprimer_typesalle(code)
+	def test_ajouter_materiel(self):
+		systeme = GestionAPI()
+		systeme.ajouter_typemateriel(1, "TV", 100)
+		systeme.ajouter_materiel(1, 1)
+		assert str(systeme.materiels) == "{1: 1}"
 
-	# def consulter_typesalle(self, code):
-	# 	self.GP.consulter_typesalle(code)
+	def supprimer_materiel(self, code_inv):
+		systeme = GestionAPI()
+		systeme.ajouter_typemateriel(1, "TV", 100)
+		systeme.ajouter_materiel(1, 1)
+		systeme.supprimer_materiel(1)
+		assert systeme.materiels == {}
 
-	# typesalles = property(typesalles)
-	# #-------------------------------------------
+	def test_ajouter_typemateriel(self):
+		systeme = GestionAPI()
+		systeme.ajouter_typemateriel(1, "TV", 100)
+		assert str(systeme.typemateriels) == "{1: 1 TV 100}"
 
-	# #fonctionnalitées materiel
-	# def materiels(self):
-	#     return self.GP.materiels
+	def supprimer_typemateriel(self, nom):
+		ssysteme = GestionAPI()
+		systeme.ajouter_typemateriel(1, "TV", 100)
+		systeme.supprimer_typemateriel(1)
+		assert systeme.typemateriels == {}
 
-	# def ajouter_materiel(self, code_inv, libelle, montant):
-	# 	self.GP.ajouter_materiel(code_inv, libelle, montant)
+	def test_ajouter_salle(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_batiment(1,"Batiment 1", "Adresse 1")
+		systeme.ajouter_typesalle(1,"Classe",100)
+		systeme.ajouter_salle(1,1,1,10,1)
+		assert str(systeme.batiments) == "{1: 1 Batiment 1 Adresse 1 {'1 1 1': 1 1 1 10 1}}"
 
-	# def supprimer_materiel(self, code_inv):
-	# 	self.GP.supprimer_materiel(code_inv)
+	def test_supprimer_salle(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_batiment(1,"Batiment 1", "Adresse 1")
+		systeme.ajouter_typesalle(1,"Classe",100)
+		systeme.ajouter_salle(1,1,1,10,1)
+		systeme.supprimer_salle(1,1,1)
+		assert str(systeme.batiments) == "{1: 1 Batiment 1 Adresse 1 {}}"
 
-	# def consulter_materiel(self, code_inv):
-	# 	self.GP.consulter_materiel(code_inv)
-
-	# materiels = property(materiels)
-	# #------------------------------------------
-
-	# #fonctionnalitées typemateriel
-	# def typemateriels(self):
-	#     return self.GP.typemateriels
-
-	# def ajouter_typemateriel(self, code, libelle, montant):
-	# 	self.GP.ajouter_typemateriel(code, libelle, montant)
-
-	# def supprimer_typemateriel(self, nom):
-	# 	self.GP.supprimer_typemateriel(nom)
-
-	# def consulter_typemateriel(self, nom):
-	# 	self.GP.consulter_typemateriel(nom)
-
-	# typemateriels = property(typemateriels)
-
-	# #fonctionnalitées salle
-	# #fonction d'ajout d'une salle si le batiment ou le typesalle n'existe pas alors la fonction est abandonné
-	# def associer_materiel(self, no_bat, no_etage, no_salle, code_inv):
+	#def associer_materiel(self, no_bat, no_etage, no_salle, code_inv):
 	# 	self.GP.associer_materiel(no_bat, no_etage, no_salle, code_inv)
 
-	# def salles(self):
-	# 	return self.GP.salles
+	def test_ajouter_demandeur(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_titre(1,"etudiant", 100)
+		systeme.ajouter_origine(1, "résident", 100)
+		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
+		assert str(systeme.demandeurs) == "{1: 1 Boceno Adresse 1 1 1}"
 
-	# def ajouter_salle(self, no_bat, no_etage, no_salle, superficie, nom_typesalle):
-	# 	self.GP.ajouter_salle(no_bat, no_etage, no_salle, superficie, nom_typesalle)
-
-	# #fonction pour supprimer une salle
-	# def supprimer_salle(self, no_bat, no_etage, no_salle):
-	# 	self.GP.supprimer_salle(no_bat, no_etage, no_salle)
-
-	# salles = property(salles)
-	# #-------------------------------
-
-	# #fonctionnalitées pour la classe demandeur
-	# def demandeurs(self):
-	# 	return self.GD.demandeurs
-
-	# def ajouter_demandeur(self, no_dem, nom, id_adresse, nom_origine, id_titre):
-	# 	self.GD.ajouter_demandeur(no_dem, nom, id_adresse, nom_origine, id_titre)
-
-	# def supprimer_demandeur(self, no_dem):
-	# 	self.GD.supprimer_demandeur(no_dem)
-
-	# demandeurs = property(demandeurs)
-	# #--------------------------------
-
-	# #fonctionnalitées pour la classe réservation
-	# def reservations(self):
-	# 	return self.GR.reservations
-
-	# def calculer_montant(self, ref_resa):
-	# 	self.GR.calculer_montant(ref_resa)
+	def test_supprimer_demandeur(self, no_dem):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_titre(1,"etudiant", 100)
+		systeme.ajouter_origine(1, "résident", 100)
+		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
+		systeme.supprimer_demandeur(1)
+		assert systeme.demandeurs == {}
 
 	# def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
 	# 	self.GR.ajouter_reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
@@ -170,7 +163,5 @@ class TestGestionAPI(object):
 	# def consulter_reservation(self, ref_resa):
 	# 	self.GR.consulter_reservation(ref_resa)
 
-	# reservations = property(reservations)
-
-	
-	# #----------------------------------------
+	# def calculer_montant(self, ref_resa):
+	# 	self.GR.calculer_montant(ref_resa)

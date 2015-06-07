@@ -16,14 +16,14 @@ class GestionPatrimoine(object):
 			GestionPatrimoine.__instance._typemateriels = {}
 			GestionPatrimoine.__instance._salles = {}
 			GestionPatrimoine.__instance._typesalles = {}
-			GestionPatrimoine.__instance._materiels = GestionLocalisation()
+			GestionPatrimoine.__instance._adresses = GestionLocalisation()
 		return GestionPatrimoine.__instance
 
 
-	def materiels(self):
-		return GestionPatrimoine.__instance._materiels
+	def adresses(self):
+		return GestionPatrimoine.__instance._adresses.adresses
 
-	materiels = property(materiels)
+	adresses = property(adresses)
 
 
 	#fonctionnalitées batiment
@@ -32,7 +32,8 @@ class GestionPatrimoine(object):
 
 	def ajouter_batiment(self,no_bat, nom, adresse):
 		if no_bat not in self.batiments:
-			self.batiments[no_bat] = Batiment(no_bat, nom, adresse)
+			if adresse in self.adresses:
+				self.batiments[no_bat] = Batiment(no_bat, nom, adresse)
 
 	batiments = property(batiments)
 
@@ -40,13 +41,12 @@ class GestionPatrimoine(object):
 		if no_bat in self.batiments:
 			return self.batiments[no_bat]
 
-
 	def modifier_batiment(self, no_bat, nom, adresse):
 		if no_bat in self.batiments:
 			self.batiments[no_bat] = Batiment(no_bat, nom, adresse)
 
 	def supprimer_batiment(self, no_bat):
-		if no_bat not in self.batiments:
+		if no_bat in self.batiments:
 			del self.batiments[no_bat]
 	#------------------------------------
 
@@ -73,9 +73,10 @@ class GestionPatrimoine(object):
 	def materiels(self):
 	    return GestionPatrimoine.__instance._materiels
 
-	def ajouter_materiel(self, code_inv, libelle, montant):
+	def ajouter_materiel(self, code_inv, typemateriel):
 		if code_inv not in self.materiels:
-			self.materiels[code_inv] = Materiel(code_inv)
+			if typemateriel in self.typemateriels:
+				self.materiels[code_inv] = Materiel(code_inv, typemateriel)
 
 	def supprimer_materiel(self, code_inv):
 		if code_inv in self.materiels:

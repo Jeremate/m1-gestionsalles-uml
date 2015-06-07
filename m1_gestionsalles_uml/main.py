@@ -80,7 +80,7 @@ class GestionAPI(object):
 	batiments = property(batiments)
 	
 	def rechercher_batiment(self, no_bat):
-		self.GP.rechercher_batiment(no_bat)
+		return self.GP.rechercher_batiment(no_bat)
 
 	def modifier_batiment(self, no_bat, nom, adresse):
 		self.GP.modifier_batiment(no_bat, nom, adresse)
@@ -109,8 +109,8 @@ class GestionAPI(object):
 	def materiels(self):
 	    return self.GP.materiels
 
-	def ajouter_materiel(self, code_inv, libelle, montant):
-		self.GP.ajouter_materiel(code_inv, libelle, montant)
+	def ajouter_materiel(self, code_inv, typemateriel):
+		self.GP.ajouter_materiel(code_inv, typemateriel)
 
 	def supprimer_materiel(self, code_inv):
 		self.GP.supprimer_materiel(code_inv)
