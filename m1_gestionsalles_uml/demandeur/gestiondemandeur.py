@@ -1,7 +1,7 @@
-from demandeur.titre import Titre
-from demandeur.origine import Origine
-from demandeur.demandeur import Demandeur
-from localisation.gestionlocalisation import GestionLocalisation
+from m1_gestionsalles_uml.demandeur.titre import Titre
+from m1_gestionsalles_uml.demandeur.origine import Origine
+from m1_gestionsalles_uml.demandeur.demandeur import Demandeur
+from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
 
 class GestionDemandeur(object):
 

@@ -42,8 +42,9 @@ setup(
     install_requires=[],
     cmdclass={'test': PyTest},
     author_email='jeremy.klauer@gmail.com',
-    description='Projet de gestion de salles développé en Python',
+    description='Projet de gestion de salles développe en Python',
     long_description=long_description,
+    test_suite='m1_gestionsalles_uml.tests.test_main',
     entry_points={
         'console_scripts': [
             'main = m1_gestionsalles_uml.main:main',

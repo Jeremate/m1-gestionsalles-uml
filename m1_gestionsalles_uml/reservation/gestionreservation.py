@@ -1,8 +1,8 @@
-from reservation.reservation import Reservation
-from reservation.manifestation import Manifestation
-from reservation.duree import Duree
-from patrimoine.gestionpatrimoine import GestionPatrimoine
-from demandeur.gestiondemandeur import GestionDemandeur
+from m1_gestionsalles_uml.reservation.reservation import Reservation
+from m1_gestionsalles_uml.reservation.manifestation import Manifestation
+from m1_gestionsalles_uml.reservation.duree import Duree
+from m1_gestionsalles_uml.patrimoine.gestionpatrimoine import GestionPatrimoine
+from m1_gestionsalles_uml.demandeur.gestiondemandeur import GestionDemandeur
 
 class GestionReservation(object):
 

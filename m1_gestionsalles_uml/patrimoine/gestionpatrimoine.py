@@ -1,9 +1,9 @@
-from patrimoine.batiment import Batiment
-from patrimoine.materiel import Materiel
-from patrimoine.typemateriel import TypeMateriel
-from patrimoine.typesalle import TypeSalle
-from patrimoine.salle import Salle
-from localisation.gestionlocalisation import GestionLocalisation
+from m1_gestionsalles_uml.patrimoine.batiment import Batiment
+from m1_gestionsalles_uml.patrimoine.materiel import Materiel
+from m1_gestionsalles_uml.patrimoine.typemateriel import TypeMateriel
+from m1_gestionsalles_uml.patrimoine.typesalle import TypeSalle
+from m1_gestionsalles_uml.patrimoine.salle import Salle
+from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
 
 class GestionPatrimoine(object):
 

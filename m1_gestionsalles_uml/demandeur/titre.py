@@ -1,4 +1,4 @@
-from finance.tabletarif import TableTarif
+from m1_gestionsalles_uml.finance.tabletarif import TableTarif
 
 class Titre(TableTarif):
 	"""Classe représentant le titre d'un demandeur.

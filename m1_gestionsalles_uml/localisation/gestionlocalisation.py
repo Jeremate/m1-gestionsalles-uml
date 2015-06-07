@@ -1,4 +1,4 @@
-from localisation.adresse import Adresse
+from m1_gestionsalles_uml.localisation.adresse import Adresse
 
 class GestionLocalisation(object):
 
