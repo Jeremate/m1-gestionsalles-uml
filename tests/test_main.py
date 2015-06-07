@@ -17,15 +17,14 @@ class TestGestionAPI(object):
 
 	def test_ajouter_titre(self):
 	 	systeme = GestionAPI()
-	 	systeme.ajouter_titre(1, "Résident", 100)
-	 	assert str(systeme.titres) == "{1: 1 Résident 100}"
+	 	systeme.ajouter_titre(1, "Maitre de conférence", 100)
+	 	assert str(systeme.titres) == "{1: 1 Maitre de conférence 100}"
 
 	def test_supprimer_titre(self):
 	 	systeme = GestionAPI()
 	 	systeme.ajouter_titre(1, "Résident", 100)
 	 	systeme.supprimer_titre(1)
 	 	assert systeme.titres == {}
-
 
 	def test_ajouter_manifestation(self):
 		systeme = GestionAPI()
@@ -49,16 +48,17 @@ class TestGestionAPI(object):
 		systeme.supprimer_duree(1)
 		assert systeme.durees == {}
 
-	# durees = property(durees)
+	def test_ajouter_origine(self):
+		systeme = GestionAPI()
+		systeme.ajouter_origine(1, "Résident", 100)
+		systeme.supprimer_origine(1)
+		assert str(systeme.origine) == "{1: 1 Résident 100}"
 
-	# def origines(self):
-	# 	return self.GD.origines
-
-	# def ajouter_origine(self, code, libelle, montant):
-	# 	self.GD.ajouter_origine(code, libelle, montant)
-
-	# def supprimer_origine(self, code):
-	# 	self.GD.supprimer_origine(code)
+	def test_supprimer_origine(self):
+		systeme = GestionAPI()
+		systeme.ajouter_origine(1, "Résident", 100)
+		systeme.supprimer_origine(1)
+		assert systeme.origine == {}
 
 	# origines = property(origines)
 
