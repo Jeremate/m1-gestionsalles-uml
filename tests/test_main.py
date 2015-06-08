@@ -148,7 +148,7 @@ class TestGestionAPI(object):
 		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
 		assert str(systeme.demandeurs) == "{1: 1 Boceno Adresse 1 1 1}"
 
-	def test_supprimer_demandeur(self, no_dem):
+	def test_supprimer_demandeur(self):
 		systeme = GestionAPI()
 		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
 		systeme.ajouter_titre(1,"etudiant", 100)
@@ -157,11 +157,19 @@ class TestGestionAPI(object):
 		systeme.supprimer_demandeur(1)
 		assert systeme.demandeurs == {}
 
-	# def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
-	# 	self.GR.ajouter_reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
+	def test_ajouter_reservation(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_titre(1,"etudiant", 100)
+		systeme.ajouter_origine(1, "résident", 100)
+		systeme.ajouter_manifestation(1,"convention", 100)
+		systeme.ajouter_duree(1, "1 journée", 100)
+		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
+		systeme.ajouter_reservation(1,"09/06/2015",1,1,1,1,1,1)
+		assert systeme.reservations == {1}
 
-	# def consulter_reservation(self, ref_resa):
-	# 	self.GR.consulter_reservation(ref_resa)
+	def consulter_reservation(self, ref_resa):
+	 	self.GR.consulter_reservation(ref_resa)
 
 	# def calculer_montant(self, ref_resa):
 	# 	self.GR.calculer_montant(ref_resa)
