@@ -129,6 +129,7 @@ class TestGestionAPI(object):
 		assert str(systeme.batiments) == "{1: 1 Batiment 1 Adresse 1 {'1 1 1': 1 1 1 10 1}}"
 
 	def test_supprimer_salle(self):
+		#suppression d'une salle
 		systeme = GestionAPI()
 		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
 		systeme.ajouter_batiment(1,"Batiment 1", "Adresse 1")
@@ -136,6 +137,16 @@ class TestGestionAPI(object):
 		systeme.ajouter_salle(1,1,1,10,1)
 		systeme.supprimer_salle(1,1,1)
 		assert str(systeme.batiments) == "{1: 1 Batiment 1 Adresse 1 {}}"
+		#test de suppression d'une réservation associer a une salle lors de la suppression de celle ci
+		systeme.ajouter_salle(1,1,1,10,1)
+		systeme.ajouter_titre(1,"etudiant", 100)
+		systeme.ajouter_origine(1, "résident", 100)
+		systeme.ajouter_manifestation(1,"convention", 100)
+		systeme.ajouter_duree(1, "1 journée", 100)
+		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
+		systeme.ajouter_reservation(1,"09/06/2015",1,1,1,1,1,1)
+		systeme.supprimer_salle(1,1,1)
+		assert systeme.reservations == {}
 
 	#def associer_materiel(self, no_bat, no_etage, no_salle, code_inv):
 	# 	self.GP.associer_materiel(no_bat, no_etage, no_salle, code_inv)
@@ -161,7 +172,6 @@ class TestGestionAPI(object):
 		systeme = GestionAPI()
 		assert systeme.reservations == {}
 		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
-		assert systeme.reservations == {}
 		systeme.ajouter_batiment(1,"Batiment 1", "Adresse 1")
 		systeme.ajouter_typesalle(1,"Classe",100)
 		systeme.ajouter_salle(1,1,1,10,1)
@@ -170,12 +180,22 @@ class TestGestionAPI(object):
 		systeme.ajouter_manifestation(1,"convention", 100)
 		systeme.ajouter_duree(1, "1 journée", 100)
 		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
-		assert str(systeme.demandeurs) == "{1: 1 Boceno Adresse 1 1 1}"
 		systeme.ajouter_reservation(1,"09/06/2015",1,1,1,1,1,1)
 		assert str(systeme.reservations) == "{1: 1 09/06/2015 500 1 1 1 1 1 1}"
+		#test d'ajout d'une deuxieme reservation pour une salle a une date donnée
+		systeme.ajouter_reservation(2,"09/06/2015",1,1,1,1,1,1)
+		assert str(systeme.reservations) == "{1: 1 09/06/2015 500 1 1 1 1 1 1}"
 
-	def consulter_reservation(self, ref_resa):
-	 	self.GR.consulter_reservation(ref_resa)
-
-	# def calculer_montant(self, ref_resa):
-	# 	self.GR.calculer_montant(ref_resa)
+	def test_consulter_reservation(self):
+		systeme = GestionAPI()
+		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		systeme.ajouter_batiment(1,"Batiment 1", "Adresse 1")
+		systeme.ajouter_typesalle(1,"Classe",100)
+		systeme.ajouter_salle(1,1,1,10,1)
+		systeme.ajouter_titre(1,"etudiant", 100)
+		systeme.ajouter_origine(1, "résident", 100)
+		systeme.ajouter_manifestation(1,"convention", 100)
+		systeme.ajouter_duree(1, "1 journée", 100)
+		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
+		systeme.ajouter_reservation(1,"09/06/2015",1,1,1,1,1,1)
+		assert str(systeme.consulter_reservation(1)) == "1 09/06/2015 500 1 1 1 1 1 1"

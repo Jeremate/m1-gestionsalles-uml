@@ -170,14 +170,11 @@ class GestionAPI(object):
 	def reservations(self):
 		return self.GR.reservations
 
-	def calculer_montant(self, ref_resa):
-		self.GR.calculer_montant(ref_resa)
-
 	def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
 		self.GR.ajouter_reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
 
 	def consulter_reservation(self, ref_resa):
-		self.GR.consulter_reservation(ref_resa)
+		return self.GR.consulter_reservation(ref_resa)
 
 	reservations = property(reservations)
 

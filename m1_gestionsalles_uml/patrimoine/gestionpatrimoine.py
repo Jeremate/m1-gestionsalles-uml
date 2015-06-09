@@ -132,10 +132,13 @@ class GestionPatrimoine(object):
 
 	#fonction pour supprimer une salle
 	def supprimer_salle(self, no_bat, no_etage, no_salle):
+		tab = []
 		if no_bat in self.batiments:
 			for r in self.reservations:
 				if self.reservations[r].id_salle == str(no_bat)+" "+str(no_etage)+" "+str(no_salle):
-					del self.reservations[r]					
+					tab.append(r)
+			for i in tab:
+				del self.reservations[i]					
 			self.batiments[no_bat].supprimer_salle(no_bat, no_etage, no_salle)
 
 	salles = property(salles)
