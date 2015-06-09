@@ -1,7 +1,6 @@
-from m1_gestionsalles_uml.patrimoine.gestionpatrimoine import GestionPatrimoine
+from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
 from m1_gestionsalles_uml.patrimoine.gestionpatrimoine import GestionPatrimoine
 from m1_gestionsalles_uml.demandeur.gestiondemandeur import GestionDemandeur
-from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
 from m1_gestionsalles_uml.reservation.gestionreservation import GestionReservation
 
 

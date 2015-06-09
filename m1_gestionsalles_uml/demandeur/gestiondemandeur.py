@@ -1,12 +1,13 @@
 from m1_gestionsalles_uml.demandeur.titre import Titre
 from m1_gestionsalles_uml.demandeur.origine import Origine
 from m1_gestionsalles_uml.demandeur.demandeur import Demandeur
-from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
+
 
 class GestionDemandeur(object):
 
 	__instance = None
 	def __new__(cls):
+		from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
 		if GestionDemandeur.__instance is None:
 			GestionDemandeur.__instance = object.__new__(cls)
 			GestionDemandeur.__instance._titres = {}

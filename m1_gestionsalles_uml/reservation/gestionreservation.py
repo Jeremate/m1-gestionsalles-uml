@@ -1,13 +1,14 @@
 from m1_gestionsalles_uml.reservation.reservation import Reservation
 from m1_gestionsalles_uml.reservation.manifestation import Manifestation
 from m1_gestionsalles_uml.reservation.duree import Duree
-from m1_gestionsalles_uml.patrimoine.gestionpatrimoine import GestionPatrimoine
-from m1_gestionsalles_uml.demandeur.gestiondemandeur import GestionDemandeur
+import time
 
 class GestionReservation(object):
 
 	__instance = None
 	def __new__(cls):
+		from m1_gestionsalles_uml.patrimoine.gestionpatrimoine import GestionPatrimoine
+		from m1_gestionsalles_uml.demandeur.gestiondemandeur import GestionDemandeur
 		if GestionReservation.__instance is None:
 			GestionReservation.__instance = object.__new__(cls)
 			GestionReservation.__instance._reservations = {}
@@ -58,16 +59,16 @@ class GestionReservation(object):
 
 	def calculer_montant(self, ref_resa):
 		res = 0
-		liste_salle = self.batiments[self._reservations[ref_resa].no_bat].salles
+		liste_salle = self.batiments[self.reservations[ref_resa].no_bat].salles
 		for salle in liste_salle:
 			res = res + self.typesalles[liste_salle[salle].typesalle].montant
 			liste_mat = liste_salle[salle].materiels
 			for mat in liste_mat:
 				res = res + self.typemateriels[liste_mat[mat].typemateriel].montant
-		res = res + self.origines[self._demandeurs[self._reservations[ref_resa].no_dem].origine].montant
-		res = res + self.titres[self._demandeurs[self._reservations[ref_resa].no_dem].titre].montant
-		res = res + self.manifestations[self._reservations[ref_resa].code_manifestation].montant
-		res = res + self.durees[self._reservations[ref_resa].code_duree].montant
+		res = res + self.origines[self.demandeurs[self._reservations[ref_resa].no_dem].origine].montant
+		res = res + self.titres[self.demandeurs[self._reservations[ref_resa].no_dem].titre].montant
+		res = res + self.manifestations[self.reservations[ref_resa].code_manifestation].montant
+		res = res + self.durees[self.reservations[ref_resa].code_duree].montant
 		self.reservations[ref_resa].montant = res
 
 	def ajouter_reservation(self, ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree):
@@ -76,8 +77,13 @@ class GestionReservation(object):
 				if code_manifestation in self.manifestations:
 					if code_duree in self._durees:
 						if self.batiments[no_bat].salle_presente(no_bat, no_etage, no_salle):
-							self.reservations[ref_resa] = Reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
-							self.calculer_montant(ref_resa)
+							ajout = True
+							for r in self.reservations:
+								if time.strftime('%d/%m/%Y',self.reservations[r].date) == date:
+									ajout = False
+							if ajout:
+								self.reservations[ref_resa] = Reservation(ref_resa, date, no_dem, no_bat, no_etage, no_salle, code_manifestation, code_duree)
+								self.calculer_montant(ref_resa)
 
 	def consulter_reservation(self, ref_resa):
 		if ref_resa in self.reservations:

@@ -159,14 +159,20 @@ class TestGestionAPI(object):
 
 	def test_ajouter_reservation(self):
 		systeme = GestionAPI()
+		assert systeme.reservations == {}
 		systeme.ajouter_adresse("Adresse 1", 101, "rue général buat", "44000", "Nantes")
+		assert systeme.reservations == {}
+		systeme.ajouter_batiment(1,"Batiment 1", "Adresse 1")
+		systeme.ajouter_typesalle(1,"Classe",100)
+		systeme.ajouter_salle(1,1,1,10,1)
 		systeme.ajouter_titre(1,"etudiant", 100)
 		systeme.ajouter_origine(1, "résident", 100)
 		systeme.ajouter_manifestation(1,"convention", 100)
 		systeme.ajouter_duree(1, "1 journée", 100)
 		systeme.ajouter_demandeur(1, "Boceno", "Adresse 1", 1, 1)
+		assert str(systeme.demandeurs) == "{1: 1 Boceno Adresse 1 1 1}"
 		systeme.ajouter_reservation(1,"09/06/2015",1,1,1,1,1,1)
-		assert systeme.reservations == {1}
+		assert str(systeme.reservations) == "{1: 1 09/06/2015 500 1 1 1 1 1 1}"
 
 	def consulter_reservation(self, ref_resa):
 	 	self.GR.consulter_reservation(ref_resa)

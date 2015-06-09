@@ -3,12 +3,13 @@ from m1_gestionsalles_uml.patrimoine.materiel import Materiel
 from m1_gestionsalles_uml.patrimoine.typemateriel import TypeMateriel
 from m1_gestionsalles_uml.patrimoine.typesalle import TypeSalle
 from m1_gestionsalles_uml.patrimoine.salle import Salle
-from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
 
 class GestionPatrimoine(object):
 
 	__instance = None
 	def __new__(cls):
+		from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
+		from m1_gestionsalles_uml.reservation.gestionreservation import GestionReservation
 		if GestionPatrimoine.__instance is None:
 			GestionPatrimoine.__instance = object.__new__(cls)
 			GestionPatrimoine.__instance._batiments = {}
@@ -17,8 +18,14 @@ class GestionPatrimoine(object):
 			GestionPatrimoine.__instance._salles = {}
 			GestionPatrimoine.__instance._typesalles = {}
 			GestionPatrimoine.__instance._adresses = GestionLocalisation()
+			GestionPatrimoine.__instance._reservations = GestionReservation()
 		return GestionPatrimoine.__instance
 
+
+	def reservations(self):
+		return GestionPatrimoine.__instance._reservations.reservations
+
+	reservations = property(reservations)
 
 	def adresses(self):
 		return GestionPatrimoine.__instance._adresses.adresses
@@ -115,7 +122,6 @@ class GestionPatrimoine(object):
 			if code_inv in self.materiels:
 				self._batiments[no_bat].associer_materiel(no_bat, no_etape, no_salle, code_inv, self._materiels[code_inv])
 
-
 	def salles(self):
 		return GestionPatrimoine.__instance._salles
 
@@ -127,8 +133,9 @@ class GestionPatrimoine(object):
 	#fonction pour supprimer une salle
 	def supprimer_salle(self, no_bat, no_etage, no_salle):
 		if no_bat in self.batiments:
-			#for r in self._reservations:
-				#if r in self._reservations:
+			for r in self.reservations:
+				if self.reservations[r].id_salle == str(no_bat)+" "+str(no_etage)+" "+str(no_salle):
+					del self.reservations[r]					
 			self.batiments[no_bat].supprimer_salle(no_bat, no_etage, no_salle)
 
 	salles = property(salles)
