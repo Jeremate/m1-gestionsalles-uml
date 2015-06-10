@@ -15,7 +15,6 @@ class Batiment(object):
 		self.adresse = adresse
 		self.salles = {}
 
-
 	def associer_materiel(self, no_bat, no_etage, no_salle, code_inv, mat):
 		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
 		self.salles[id_salle].associer_materiel(code_inv, mat)
@@ -49,7 +48,8 @@ class Batiment(object):
 
 	def ajouter_salle(self, no_bat, no_etage, no_salle, superficie, typesalle):
 		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
-		self.salles[id_salle] = Salle(no_etage, no_salle, no_bat, superficie, typesalle)
+		if id_salle not in self.salles:
+			self.salles[id_salle] = Salle(no_etage, no_salle, no_bat, superficie, typesalle)
 
 	def supprimer_salle(self, no_bat, no_etage, no_salle):
 		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)

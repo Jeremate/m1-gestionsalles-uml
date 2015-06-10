@@ -177,6 +177,4 @@ class GestionAPI(object):
 		return self.GR.consulter_reservation(ref_resa)
 
 	reservations = property(reservations)
-
-	
 	#----------------------------------------

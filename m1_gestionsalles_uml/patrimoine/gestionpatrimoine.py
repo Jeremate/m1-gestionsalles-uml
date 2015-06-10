@@ -50,7 +50,8 @@ class GestionPatrimoine(object):
 
 	def modifier_batiment(self, no_bat, nom, adresse):
 		if no_bat in self.batiments:
-			self.batiments[no_bat] = Batiment(no_bat, nom, adresse)
+			if adresse in self.adresses:
+				self.batiments[no_bat] = Batiment(no_bat, nom, adresse)
 
 	def supprimer_batiment(self, no_bat):
 		if no_bat in self.batiments:
@@ -128,7 +129,7 @@ class GestionPatrimoine(object):
 	def ajouter_salle(self, no_bat, no_etage, no_salle, superficie, nom_typesalle):
 		if no_bat in self.batiments:
 			if nom_typesalle in self.typesalles:
-				self.batiments[no_bat].ajouter_salle(no_etage, no_salle, no_bat, superficie, nom_typesalle)
+				self.batiments[no_bat].ajouter_salle(no_bat, no_etage, no_salle, superficie, nom_typesalle)
 
 	#fonction pour supprimer une salle
 	def supprimer_salle(self, no_bat, no_etage, no_salle):

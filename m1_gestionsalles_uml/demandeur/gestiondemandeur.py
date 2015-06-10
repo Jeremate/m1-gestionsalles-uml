@@ -57,7 +57,6 @@ class GestionDemandeur(object):
 		return GestionDemandeur.__instance._demandeurs
 
 	def ajouter_demandeur(self, no_dem, nom, id_adresse, code_origine, code_titre):
-		print(self.adresses)
 		if no_dem not in self.demandeurs:
 			if code_origine in self.origines:
 				if code_titre in self.titres:
