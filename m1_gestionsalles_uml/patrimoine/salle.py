@@ -9,9 +9,14 @@ class Salle(object):
 		self.typesalle = typesalle
 		self.materiels = {}
 
-	def associer_materiel(self, code_inv, mat):
-		if code_inv not in self.materiels:
-			self.materiels[code_inv] = mat
+
+	@property
+	def materiels(self):
+	    return self._materiels
+
+	@materiels.setter
+	def materiels(self, val):
+		self._materiels = val
 
 	@property
 	def no_etage(self):
@@ -54,7 +59,11 @@ class Salle(object):
 		self._typesalle = val
 
 	def __repr__(self):
-		return "{} {} {} {} {}".format(self.no_salle, self.no_bat, self.no_etage, self.superficie, self.typesalle)
+		return "{} {} {} {} {} {}".format(self.no_salle, self.no_bat, self.no_etage, self.superficie, self.typesalle, self.materiels)
 
 	def __str__(self):
-		return "{} {} {} {} {}".format(self.no_salle, self.no_bat, self.no_etage, self.superficie, self.typesalle)
+		return "{} {} {} {} {} {}".format(self.no_salle, self.no_bat, self.no_etage, self.superficie, self.typesalle, self.materiels)
+
+	def associer_materiel(self, code_inv, mat):
+		if code_inv not in self.materiels:
+			self.materiels[code_inv] = mat

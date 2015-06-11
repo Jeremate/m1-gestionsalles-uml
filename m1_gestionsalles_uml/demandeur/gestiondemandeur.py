@@ -8,15 +8,20 @@ class GestionDemandeur(object):
 	__instance = None
 	def __new__(cls):
 		from m1_gestionsalles_uml.localisation.gestionlocalisation import GestionLocalisation
+		from m1_gestionsalles_uml.reservation.gestionreservation import GestionReservation
 		if GestionDemandeur.__instance is None:
 			GestionDemandeur.__instance = object.__new__(cls)
 			GestionDemandeur.__instance._titres = {}
 			GestionDemandeur.__instance._origines = {}
 			GestionDemandeur.__instance._demandeurs = {}
 			GestionDemandeur.__instance._adresses = GestionLocalisation()
+			GestionDemandeur.__instance._reservations = GestionReservation()
 		return GestionDemandeur.__instance
 
-	
+	def reservations(self):
+		return GestionDemandeur.__instance._reservations.reservations
+
+	reservations = property(reservations)
 
 	def adresses(self):
 		return GestionDemandeur.__instance._adresses.adresses
@@ -64,7 +69,13 @@ class GestionDemandeur(object):
 						self.demandeurs[no_dem] = Demandeur(no_dem, nom , id_adresse, code_origine, code_titre)
 
 	def supprimer_demandeur(self, no_dem):
+		liste_res = []
 		if no_dem in self.demandeurs:
+			for res in self.reservations:
+				if self.reservations[res].no_dem == no_dem:
+					liste_res.append(res)
+			for i in liste_res:
+				del self.reservations[i]
 			del self.demandeurs[no_dem]
 
 	demandeurs = property(demandeurs)

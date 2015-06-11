@@ -55,7 +55,12 @@ class GestionPatrimoine(object):
 
 	def supprimer_batiment(self, no_bat):
 		if no_bat in self.batiments:
-			del self.batiments[no_bat]
+			if self.batiments[no_bat].salles == {}:
+				del self.batiments[no_bat]
+			else:
+				liste_salle = self.batiments[no_bat].salles
+				for salle in liste_salle:
+					self.batiments[no_bat].salles[salle].supprimer_salle(int(salle.split()[0]),int(salle.split()[1]),int(salle.split()[2]))
 	#------------------------------------
 
 	#fonctionnalitées typesalle
@@ -121,7 +126,8 @@ class GestionPatrimoine(object):
 	def associer_materiel(self, no_bat, no_etage, no_salle, code_inv):
 		if no_bat in self.batiments:
 			if code_inv in self.materiels:
-				self._batiments[no_bat].associer_materiel(no_bat, no_etape, no_salle, code_inv, self._materiels[code_inv])
+				self.batiments[no_bat].associer_materiel(no_bat, no_etage, no_salle, code_inv, self.materiels[code_inv])
+				del self.materiels[code_inv]
 
 	def salles(self):
 		return GestionPatrimoine.__instance._salles
@@ -134,12 +140,15 @@ class GestionPatrimoine(object):
 	#fonction pour supprimer une salle
 	def supprimer_salle(self, no_bat, no_etage, no_salle):
 		tab = []
+		id_salle = str(no_bat)+" "+str(no_etage)+" "+str(no_salle)
 		if no_bat in self.batiments:
 			for r in self.reservations:
-				if self.reservations[r].id_salle == str(no_bat)+" "+str(no_etage)+" "+str(no_salle):
+				if self.reservations[r].id_salle == id_salle:
 					tab.append(r)
 			for i in tab:
-				del self.reservations[i]					
+				del self.reservations[i]
+			for mat in self.batiments[no_bat].salles[id_salle].materiels:
+				self.materiels[mat] = self.batiments[no_bat].salles[id_salle].materiels[mat]	
 			self.batiments[no_bat].supprimer_salle(no_bat, no_etage, no_salle)
 
 	salles = property(salles)
